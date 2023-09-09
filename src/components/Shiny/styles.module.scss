@@ -1,0 +1,23 @@
+
+
+.shiny_boi {
+    --bgColor: var(--color, rgba(255, 255, 255, 0.5));
+    content: '';
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.3s linear;
+    position: absolute;
+    width: 2000px;
+    height: 2000px;
+    border-radius: 100%;
+    background: radial-gradient(var(--bgColor) 1%,
+            transparent,
+            transparent 100%,
+            var(--bgColor) 100%,
+        );
+    opacity: 0.2;
+    z-index: 1;
+    transform: translateX(-50%) translateY(-50%);
+}
+  
