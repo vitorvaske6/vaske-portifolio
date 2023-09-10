@@ -1,9 +1,7 @@
 "use client"
 import { useStateContext } from "@/contexts/ContextProvider";
-import useWindowDimensions from "@/hooks/UseWindowDimensions";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-
 
 type Menu = {
     key: string
@@ -35,12 +33,11 @@ export const menus: Menu[] = [
 ]
 
 export const Sidebar: React.FC<{}> = ({ }) => {
-    const { mouseOver, activeMenu, handleMouseOver, handleClick, scrollFunction } = useStateContext()
-    const { height, width } = useWindowDimensions();
+    const { mouseOver, activeMenu, handleMouseOver, handleClick, scrollFunction, windowDimensions } = useStateContext()
 
     return (
         <div className={classNames({
-            "hidden": width < 1280,
+            "hidden": windowDimensions.width < 1280,
             "fixed left-4 z-50": true,
             "grid justify-center align-middle grid-rows-[40%_20%_40%]": true,
             "w-40 h-screen": true,

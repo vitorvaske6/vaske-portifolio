@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export function truncateFunction(str: string, n: number, useWordBoundary: boolean) {
     if (!str) { return ''; }
     if (str.length <= n) { return str; }
@@ -5,6 +7,16 @@ export function truncateFunction(str: string, n: number, useWordBoundary: boolea
     return (useWordBoundary
         ? subString.slice(0, subString.lastIndexOf(" "))
         : subString) + "...";
+}
+
+export function isInViewport(element: HTMLDivElement) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 }
 
 export const sorter = (sortBy: string, sortType: 'number' | 'string', direction: 'asc' | 'desc') => (a: any, b: any) => {

@@ -11,11 +11,13 @@ function Shiny({ color, style }: Props) {
 
     useEffect(() => {
         function mouseMoveEvent(e: MouseEvent) {
-            const { x, y } = containerRef.current.getBoundingClientRect();
-            containerRef.current.style.setProperty('--px', `${e.clientX - x}`);
-            containerRef.current.style.setProperty('--py', `${e.clientY - y}`);
+            if (containerRef.current) {
+                const { x, y } = containerRef.current.getBoundingClientRect()
+                containerRef.current.style.setProperty('--px', `${e.clientX - x}`)
+                containerRef.current.style.setProperty('--py', `${e.clientY - y}`)
 
-            color && containerRef.current.style.setProperty('--color', color);
+                color && containerRef.current.style.setProperty('--color', color)
+            }
         }
         
         if(containerRef?.current !== null){
@@ -23,7 +25,9 @@ function Shiny({ color, style }: Props) {
             containerRef.current.addEventListener('mousemove', mouseMoveEvent);
 
             return () => {
-                containerRef.current.removeEventListener('mousemove', mouseMoveEvent);
+                if (containerRef.current) {
+                    containerRef.current.removeEventListener('mousemove', mouseMoveEvent)
+                }
             };
         }
     }, []);

@@ -7,44 +7,28 @@ import React from "react";
 import { Navbar, Button, Link, Text, Card, Radio, Collapse } from "@nextui-org/react";
 import { useStateContext } from "@/contexts/ContextProvider";
 import { menus } from "./Sidebar";
-import useWindowDimensions from "@/hooks/UseWindowDimensions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Cross as Hamburger } from 'hamburger-react'
 
 export const Navigation = ({ }) => {
-  const { currentTheme, mouseOver, activeMenu, handleMouseOver, handleClick, scrollFunction, visibleNavigation } = useStateContext()
+  const { currentTheme, mouseOver, activeMenu, handleMouseOver, handleClick, scrollFunction, visibleNavigation, setHideNavbar, hideNavbar, windowDimensions } = useStateContext()
   const [toggleNavbar, setToggleNavbar] = useState(false)
-  const [hideNavbar, setHideNavbar] = useState(false)
-  const { height, width } = useWindowDimensions()
-  const [smallNavbar, setSmallNavbar] = useState(width < 650)
+
+  const [smallNavbar, setSmallNavbar] = useState(windowDimensions.width < 650)
   const [isOpen, setOpen] = useState(false)
-
-  useEffect(() => {
-    if (width < 650) {
-      setSmallNavbar(true)
-    } else {
-      setSmallNavbar(false)
-    }
-  }, [width])
-
-  useEffect(() => {
-    var lastScrollTop = 0;
-    document.addEventListener("scroll", (event) => {
-      var st = window.scrollY || document.documentElement.scrollTop;
-      if (st > lastScrollTop) {
-        setHideNavbar(true)
-        // console.log("scroll down")
-      } else if (st < lastScrollTop) {
-        setHideNavbar(false)
-        // console.log("scroll up")
-      } // else was horizontal scroll
-      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-    });
-  }, [])
 
   const handleToggleNavbar = () => {
     setToggleNavbar(!toggleNavbar)
   }
+
+  useEffect(() => {
+    if (windowDimensions.width < 650) {
+      setSmallNavbar(true)
+    } else {
+      setSmallNavbar(false)
+    }
+  }, [windowDimensions.width])
+
 
   return (
     <div
@@ -78,7 +62,7 @@ export const Navigation = ({ }) => {
             className={classNames({
               "cursor-pointer fixed": true,
               "top-[18px]": smallNavbar,
-              "top-[14px]": !smallNavbar,              
+              "top-[14px]": !smallNavbar,
             })}
             onClick={() => [handleClick('about'), scrollFunction('about')]}
           />

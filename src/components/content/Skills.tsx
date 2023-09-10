@@ -12,7 +12,7 @@ import Link from "next/link";
 import { sorter, truncateFunction } from "@/utils/CustomFunctions";
 import Shiny from "../Shiny";
 import { SkillsType } from "@/app/page";
-import useOnScreen from "@/hooks/UseOnScreen";
+// import useOnScreen from "@/hooks/UseOnScreen";
 
 
 type Props = {
@@ -20,43 +20,12 @@ type Props = {
 }
 
 export const Skills = ({ skills }: Props) => {
-    const { scrollFunction } = useStateContext();
+    const { scrollFunction, loadAnimation, refVisibleSkills } = useStateContext();
     const { theme } = useTheme();
     const [sortedSkills, setSortedSkills] = useState(skills)
-    // const [loadAnimation, setLoadAnimation] = useState(false)
-    const refVisibleElement = useRef<HTMLDivElement>(null)
-    const loadAnimation = useOnScreen(refVisibleElement)
-    // const [currentProject, setCurrentProject] = useState<Project>({ ...projects[0] });
-
-    // async function handler(project: Project) {
-    //     if(currentProject.key === project.key){
-    //         scrollFunction(`project-details-${project.key}`, "center")
-    //     }
-    //     else{
-    //         setCurrentProject({ ...project })
-    //         await 1000
-    //         scrollFunction(`project-details-${project.key}`, "center")
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     let timer = setTimeout(() => {
-    //         setLoadAnimation(true)
-    //     }, 1000);
-
-    //     return () => {
-    //         clearTimeout(timer);
-    //     };
-    // }, []);
-
     
-
-    useEffect(() => {
-        // FAZER PELA POSIÇÃO DA DIV -> QUANDO CHEGAR PERTO EXECUTAR A FUNÇÃO
-    }, []);
-
     return (
-        <div className="relative sm:px-4 md:px-8 px-2 grid gap-6" ref={refVisibleElement}>
+        <div className="relative sm:px-4 md:px-8 px-2 grid gap-6" ref={refVisibleSkills}>
             <Shiny style={{ top: '50%', left: '50%', zIndex: 0 }} />
             <h1 className="uppercase" >
                 Skills
