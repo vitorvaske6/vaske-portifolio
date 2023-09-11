@@ -67,7 +67,7 @@ export const Navigation = ({ }) => {
             onClick={() => [handleClick('about'), scrollFunction('about')]}
           />
         </div>
-        <div className="grid justify-items-end">
+        <div className="grid justify-items-end min-h-[30px]">
           <Navbar.Content hideIn="xs" variant={'underline-rounded'} activeColor={'primary'}>
             {menus.map((menu) => (
               <Navbar.Link
