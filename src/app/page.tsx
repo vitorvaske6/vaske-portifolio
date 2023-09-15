@@ -45,9 +45,9 @@ export default function Home() {
     <main className="grid gap-x-12 bg-gray-950 w-[100vw] min-w-[484px]">
       <span id='about' />
       <About />
-      {/* <div id='projects' className='grid place-items-center py-24 w-[100vw]' style={{ backgroundColor: theme?.colors.background.value }}> */}
+      <div id='projects' className='grid place-items-center py-24 w-[100vw]' style={{ backgroundColor: theme?.colors.background.value }}> 
         <Projects />
-      {/* </div> */}
+       </div>
       <div id="skills" className='bg-gray-950 grid place-items-center py-24 min-h-screen min-w-[484px]'>
         <Skills skills={skills.sort(sorter('percentage', 'number', 'desc'))} />
       </div>
