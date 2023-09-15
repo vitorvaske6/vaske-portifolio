@@ -25,15 +25,15 @@ export const Skills = ({ skills }: Props) => {
     const [sortedSkills, setSortedSkills] = useState(skills)
     
     return (
-        <div className="relative sm:px-4 md:px-8 px-2 grid gap-6" ref={refVisibleSkills}>
-            <Shiny style={{ top: '50%', left: '50%', zIndex: 0 }} />
+        <div className="relative sm:px-4 md:px-8 px-2 grid gap-6">
+            <Shiny style={{overflow: 'hidden', top: '50%', left: '50%', zIndex: 0 }} />
             <h1 className="uppercase" >
                 Skills
             </h1>
             <h2 className="text-xl">
                 In addition to my technical skills I also have some of the best soft skills for a developer such as: proactivity, problem solving, organization and autodidactism.
             </h2>
-            <Grid.Container gap={2} justify="center">
+            <Grid.Container gap={2} justify="center" ref={refVisibleSkills}>
                 {sortedSkills?.map((skill, _) => (
                     <Grid xs={6} key={skill.key} className="flex flex-col place-items-center align-middle gap-4 h-20" >
                         <>

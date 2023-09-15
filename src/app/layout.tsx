@@ -23,12 +23,11 @@ export default function Layout({
       <head>
         <title>Vaske - Portifolio</title>
       </head>
-       <body className={`${inter.className} bg-gray-950 `}> 
+       <body className={`${inter.className} bg-gray-950 min-w-[484px]`}> 
         <NextAuthProvider>
           <ContextProvider>
             <NextUIProviderFunction theme={currentTheme}>
               <Navigation />
-              <Sidebar />
               {children}
             </NextUIProviderFunction>
           </ContextProvider>

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import styles from './styles.module.scss';
+import { useStateContext } from '@/contexts/ContextProvider';
 
 type Props = {
     color?: string;
@@ -8,6 +9,7 @@ type Props = {
 
 function Shiny({ color, style }: Props) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { windowDimensions } = useStateContext()
 
     useEffect(() => {
         function mouseMoveEvent(e: MouseEvent) {
@@ -32,7 +34,7 @@ function Shiny({ color, style }: Props) {
         }
     }, []);
 
-    return <div ref={containerRef} className={styles.shiny_boi} style={{...style}}></div>;
+    return <div ref={containerRef} className={styles.shiny_boi} style={{...style, maxWidth: "100%"}}></div>;
 }
 
 export default Shiny;

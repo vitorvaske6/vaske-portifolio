@@ -1,10 +1,12 @@
 "use client"
 
+import LoadingContext from '@/components/LoadingContext';
 // import useOnScreen from '@/hooks/UseOnScreen';
 import { isInViewport } from '@/utils/CustomFunctions';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const StateContext = createContext<any>({});
 
@@ -21,12 +23,16 @@ export const ContextProvider = ({ children }: Props) => {
     const [currentTheme, setCurrentTheme] = useState('dark')
 
     const [hideNavbar, setHideNavbar] = useState(false)
+    const [firstLoad, setFirstLoad] = useState(true)
 
-    const refVisibleSkills = useRef<HTMLDivElement>(null)
-    const [loadAnimation, setLoadAnimation] = useState(false)
+    const { ref: refVisibleSkills, inView: loadAnimation, entry: entry_skills } = useInView({
+        threshold: 0,
+    });
+    
+    const { ref: refVisibleAbout, inView: visibleNavigation, entry: entry_nav } = useInView({
+        threshold: 0,
+    });
 
-    const refVisibleAbout = useRef<HTMLDivElement>(null)
-    const [visibleNavigation, setVisibleNavigation] = useState(false)
     const [windowDimensions, setWindowDimensions] = useState<{ width: number, height: number }>({width: 1920, height: 1080});
 
     const handleMouseOver = (key: string) => {
@@ -49,9 +55,8 @@ export const ContextProvider = ({ children }: Props) => {
     }
 
     useEffect(() => {
-        
         function handleResize() {
-            setWindowDimensions({ width: window.innerWidth, height: window.innerHeight });
+            setWindowDimensions({ width: screen.width, height: screen.height });
         }
 
         if (window) {
@@ -63,11 +68,6 @@ export const ContextProvider = ({ children }: Props) => {
     useEffect(() => {
         var lastScrollTop = 0;
         document.addEventListener("scroll", (event) => {
-            if (refVisibleSkills?.current)
-                setLoadAnimation(isInViewport(refVisibleSkills.current))
-            if (refVisibleAbout?.current)
-                setVisibleNavigation(isInViewport(refVisibleAbout.current))
-
             var st = window.scrollY || document.documentElement.scrollTop;
             if (st > lastScrollTop) {
                 setHideNavbar(true)
@@ -80,13 +80,27 @@ export const ContextProvider = ({ children }: Props) => {
         });
     }, [])
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setFirstLoad(false)
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, [])
+
+
+    if (firstLoad) {
+        return (
+            <LoadingContext />
+        )
+    }
+
     const value = {
         router,
         sessionData, sessionStatus,
         mouseOver, activeMenu, handleMouseOver, handleClick, scrollFunction,
         currentTheme, setCurrentTheme,
-        refVisibleAbout, visibleNavigation, setVisibleNavigation,
-        refVisibleSkills, loadAnimation, setLoadAnimation,
+        refVisibleAbout, visibleNavigation, 
+        refVisibleSkills, loadAnimation,
         setHideNavbar, hideNavbar,
         windowDimensions
     }

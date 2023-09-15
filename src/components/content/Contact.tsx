@@ -8,25 +8,71 @@ import { FormEvent, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
+import ModalWarning from "../ModalWarning"
+
+type Submit = { 
+    code: number, 
+    message: string, 
+    callback?: string
+}
 
 export const Contact = () => {
     const [input, setInput] = useState({
-        TipoConteudoAcessado: '',
-        NmUsuario: '',
-        NmLogin: '',
-        NmAliasDefault: '',
-        NrCnpj: '',
+        name: '',
+        lastname: '',
+        subject: '',
+        email: '',
+        content: ''
     })
 
-    const [hoverKey, setHoverKey] = useState('')
+    const [visible, setVisible] = useState(false);
+    const [resSubmit, setResSubmit] = useState<Submit>({ code: 0, message: '', callback: undefined })
+    const handler = (resSubmit: Submit) => {
+      setResSubmit(resSubmit)
+      setVisible(true)
+    };
+
+    const closeHandler = () => {
+        setVisible(false);
+    };
+
+    const onSubmit = async () => {
+        console.log(input)
+        
+        const sendTo = input.email
+        const subject = input.subject
+        const content = `New message from:\n${input.name} ${input.lastname}.\nMessage:\n${input.content}`
+
+        const response = await fetch(`/api/email/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                sendTo: sendTo,
+                subject: subject,
+                content: content,
+            }),
+        });
+        const response_json = await response.json()
+
+        handler(response_json)
+    }
 
     const handleInput = (field: string, data: string) => {
         setInput(prevInput => ({ ...prevInput, [`${field}`]: `${data}` }))
     }
 
     return (
-        <div className="relative max-w-7xl sm:px-4 md:px-8 px-2 grid gap-6">
-            <Shiny style={{ top: '40%', left: '50%' }} />
+        <div className="relative sm:px-4 md:px-8 px-2 grid gap-6 min-w-[484px]">
+            <Shiny style={{ overflow: 'hidden', top: '40%', left: '50%' }} />
+            <ModalWarning
+                title={''}
+                message={resSubmit.message}
+                preventClose={false}
+                isError={resSubmit.code === 200 ? false : true}
+                visible={visible}
+                callback={''}
+                closeHandler={closeHandler}
+            />
             <h1 className="uppercase" >
                 Contact Me
             </h1>
@@ -39,32 +85,38 @@ export const Contact = () => {
                             labelName={"Name"}
                             placeholder={''}
                             hasIcon={false}
-                            onChange={(e: FormEvent<HTMLInputElement>) => handleInput('NmUsuario-NmLogin', e.currentTarget.value)} />
+                            onChange={(e: FormEvent<HTMLInputElement>) => handleInput('name', e.currentTarget.value)} />
                         <InputForm
                             keyName={'lastname'}
                             type="text"
                             labelName={"Last Name"}
-                            placeholder={'Entre com o nome ou login'}
+                            placeholder={''}
                             hasIcon={false}
-                            onChange={(e: FormEvent<HTMLInputElement>) => handleInput('NmUsuario-NmLogin', e.currentTarget.value)} />
+                            onChange={(e: FormEvent<HTMLInputElement>) => handleInput('lastname', e.currentTarget.value)} />
                     </div>
-
+                    <InputForm
+                        keyName={'subject'}
+                        type="text"
+                        labelName={"Subject"}
+                        placeholder={''}
+                        hasIcon={false}
+                        onChange={(e: FormEvent<HTMLInputElement>) => handleInput('subject', e.currentTarget.value)} />
                     <InputForm
                         keyName={'email'}
                         type="text"
                         labelName={"E-mail"}
-                        placeholder={'Entre com o nome ou login'}
+                        placeholder={''}
                         hasIcon={false}
-                        onChange={(e: FormEvent<HTMLInputElement>) => handleInput('NmUsuario-NmLogin', e.currentTarget.value)} />
+                        onChange={(e: FormEvent<HTMLInputElement>) => handleInput('email', e.currentTarget.value)} />
                     <InputForm
                         keyName={'content'}
                         type="textarea"
                         labelName={"Message"}
-                        placeholder={'Entre com o nome ou login'}
+                        placeholder={''}
                         hasIcon={false}
-                        onChange={(e: FormEvent<HTMLInputElement>) => handleInput('NmUsuario-NmLogin', e.currentTarget.value)} />
+                        onChange={(e: FormEvent<HTMLInputElement>) => handleInput('content', e.currentTarget.value)} />
                     <span />
-                    <Button auto rounded >
+                    <Button auto rounded onClick={onSubmit}>
                         <Text
                             css={{ color: "inherit" }}
                             size={12}
@@ -150,9 +202,7 @@ export const Contact = () => {
                                 />
                             </span>
                         </Link>
-
                     </Tooltip>
-
                 </div>
             </div>
         </div>

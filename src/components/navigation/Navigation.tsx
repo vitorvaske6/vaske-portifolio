@@ -35,10 +35,10 @@ export const Navigation = ({ }) => {
       onMouseOver={() => setHideNavbar(false)}
       className={classNames({
         "top-[12px] px-8": (!hideNavbar || visibleNavigation) && !smallNavbar,
-        "top-[0px]": (!hideNavbar || visibleNavigation) && smallNavbar,
-        "-top-[66px]": hideNavbar && !visibleNavigation,
+        "top-[0px] left-0 right-0": (!hideNavbar || visibleNavigation) && smallNavbar,
+        "-top-[66px]": (hideNavbar && !visibleNavigation) && !smallNavbar,
         "transition-all duration-500": true,
-        "fixed z-[200] w-full": true,
+        "fixed z-[200] w-[100vw] min-w-[484px]": true,
         "grid place-items-center": true,
       })}>
       <div className={classNames({

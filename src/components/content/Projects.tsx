@@ -631,9 +631,9 @@ export const Projects = () => {
     };
 
     return (
-        <div className="relative max-w-7xl sm:px-4 md:px-8 px-2 grid gap-6">
-            <Shiny style={{ top: '20%', left: '50%', zIndex:0 }} />
-            <Shiny style={{ top: '45%', left: '50%' }} />
+        <div id='projects' className="relative sm:px-4 md:px-8 px-2 grid gap-6 max-w-[100vw] min-w-[484px] py-24" style={{ backgroundColor: theme?.colors.background.value }}>
+            <Shiny style={{overflow: 'hidden', top: '20%', left: '50%', zIndex:0 }} />
+            <Shiny style={{overflow: 'hidden', top: '45%', left: '50%' }} />
             <h1 className="uppercase" >
                 Projects
             </h1>

@@ -7,10 +7,10 @@ export const About = () => {
     const { refVisibleAbout } = useStateContext()
 
     return (
-        <div ref={refVisibleAbout} className="relative flex gap-4 align-middle justify-center max-w-7xl h-screen items-center font-mono text-sm lg:px-4 px-16">
-        <Shiny style={{top: '40%', left: '50%'}} />
+        <div className="relative flex gap-4 align-middle justify-center h-screen w-screen min-w-[484px] items-center font-mono text-sm lg:px-4 px-16 min-h-[100vh]">
+        <Shiny style={{overflow: 'hidden',top: '40%', left: '50%'}} />
                 <div className='relative gap-3 align-middle justify-center'>
-                    <h1 className='text-center text-2xl md:text-4xl text-white'>Hi,</h1>
+                    <h1 ref={refVisibleAbout} className='text-center text-2xl md:text-4xl text-white'>Hi,</h1>
                     <h1 className='text-center text-2xl md:text-4xl text-white'>I&apos;m Vitor</h1>
                     <h2 className='text-center text-sm md:text-lg text-gray-400'>Fullstack & Automation/Integration Developer</h2>
                     <h3 className="group text-center cursor-default">
