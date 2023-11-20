@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { NextUIProvider } from '@nextui-org/react';
 import NextNProgress from 'nextjs-progressbar';
 import { DarkTheme, LightTheme } from "@/components/Theme";
-import { useStateContext } from '../contexts/ContextProvider';
+import { ContextProvider, useStateContext } from '../contexts/ContextProvider';
 
 type Props = {
     children?: React.ReactNode
@@ -30,3 +30,14 @@ export const NextUIProviderFunction = ({ children }: UIProps) => {
     );
 };
 
+export const Providers = ({ children }: UIProps) => {
+    return (
+        <NextAuthProvider>
+          <ContextProvider>
+            <NextUIProviderFunction>
+              {children}
+            </NextUIProviderFunction>
+          </ContextProvider>
+        </NextAuthProvider>
+    )
+}

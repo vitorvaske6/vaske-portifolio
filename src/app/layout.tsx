@@ -1,13 +1,7 @@
-"use client"
-
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { NextAuthProvider, NextUIProviderFunction } from './providers'
-import { ContextProvider, useStateContext } from '@/contexts/ContextProvider'
-import { Sidebar } from '@/components/navigation/Sidebar'
+import { Providers } from './providers'
 import { Navigation } from '@/components/navigation/Navigation'
-import Head from 'next/head'
-import { Metadata } from 'next'
 import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,7 +16,6 @@ export default function Layout({
 }: {
   children: React.ReactNode
 }) {
-  const { currentTheme } = useStateContext();
 
   return (
     <html lang="en" className='scroll-smooth scrollbar-thin scrollbar-thumb-white scrollbar-track-gray-950'>
@@ -40,14 +33,10 @@ export default function Layout({
         }} />
       </head>
       <body className={`${inter.className} bg-gray-950 min-w-[484px]`}>
-        <NextAuthProvider>
-          <ContextProvider>
-            <NextUIProviderFunction theme={currentTheme}>
+        <Providers>
               <Navigation />
               {children}
-            </NextUIProviderFunction>
-          </ContextProvider>
-        </NextAuthProvider>
+        </Providers>
       </body>
     </html>
   )
