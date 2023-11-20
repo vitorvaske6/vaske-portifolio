@@ -7,7 +7,7 @@ export const About = () => {
     const { refVisibleAbout } = useStateContext()
 
     return (
-        <div className="relative flex gap-4 align-middle justify-center h-screen w-screen min-w-[484px] items-center font-mono text-sm lg:px-4 px-16 min-h-[100vh]">
+        <div className="relative flex gap-4 align-middle justify-center h-screen w-screen min-w-[484px] items-center font-mono text-sm lg:px-4 px-16 min-h-[100dvh]">
         <Shiny style={{overflow: 'hidden',top: '40%', left: '50%'}} />
                 <div className='relative gap-3 align-middle justify-center'>
                     <h1 ref={refVisibleAbout} className='text-center text-2xl md:text-4xl text-white'>Hi,</h1>

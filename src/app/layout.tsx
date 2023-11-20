@@ -12,6 +12,11 @@ import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const metadata = {
+  title: 'Vaske - Portifolio',
+  description: ''
+}
+
 export default function Layout({
   children,
 }: {
@@ -22,7 +27,6 @@ export default function Layout({
   return (
     <html lang="en" className='scroll-smooth scrollbar-thin scrollbar-thumb-white scrollbar-track-gray-950'>
       <head>
-        <title>Vaske - Portifolio</title>
         {/* <!-- Google tag (gtag.js) --> */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-M09JXKHT79" />
         <script dangerouslySetInnerHTML={{

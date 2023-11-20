@@ -38,7 +38,7 @@ export const Navigation = ({ }) => {
         "top-[0px] left-0 right-0": (!hideNavbar || visibleNavigation) && smallNavbar,
         "-top-[66px]": (hideNavbar && !visibleNavigation) && !smallNavbar,
         "transition-all duration-500": true,
-        "fixed z-[200] w-[100vw] min-w-[484px]": true,
+        "fixed z-[200] w-[100dvw] min-w-[484px]": true,
         "grid place-items-center": true,
       })}>
       <div className={classNames({
