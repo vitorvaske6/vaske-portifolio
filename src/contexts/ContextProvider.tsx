@@ -71,10 +71,10 @@ export const ContextProvider = ({ children }: Props) => {
             var st = window.scrollY || document.documentElement.scrollTop;
             if (st > lastScrollTop) {
                 setHideNavbar(true)
-                // console.log("scroll down")
+                // //console.log("scroll down")
             } else if (st < lastScrollTop) {
                 setHideNavbar(false)
-                // console.log("scroll up")
+                // //console.log("scroll up")
             } // else was horizontal scroll
             lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
         });

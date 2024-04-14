@@ -37,7 +37,7 @@ export const Contact = () => {
     };
 
     const onSubmit = async () => {
-        console.log(input)
+        //console.log(input)
         
         const sendTo = input.email
         const subject = input.subject
@@ -53,7 +53,7 @@ export const Contact = () => {
             }),
         });
         const response_json = await response.json()
-
+        //console.log(`response_json`, response_json)
         handler(response_json)
     }
 

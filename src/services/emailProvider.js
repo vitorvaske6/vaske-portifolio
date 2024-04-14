@@ -15,14 +15,19 @@ export async function sendMail(subject, sendTo, content) {
     subject: subject,
     text: content,
   };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      return false
-    } else {
-      console.log("Email Sent");
-      return true
-    }
-  });
-  return true
+  try {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        //console.log(error, info)
+        return false
+      } else {
+        //console.log("Email Sent");
+        return true
+      }
+    });
+    return true
+  } catch (err) {
+    // //console.log(err)
+    return false
+  }
 }
