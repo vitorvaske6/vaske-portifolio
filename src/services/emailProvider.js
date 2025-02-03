@@ -16,7 +16,7 @@ export async function sendMail(subject, sendTo, content) {
     text: content,
   };
   try {
-    transporter.sendMail(mailOptions, function (error, info) {
+    await transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         //console.log(error, info)
         return false
