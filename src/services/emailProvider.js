@@ -16,16 +16,16 @@ export async function sendMail(subject, sendTo, content) {
     text: content,
   };
   try {
-    await new Promise((resolve, reject) => {
-      transporter.sendMail(mailOptions, function (error, info) {
+    const result = await new Promise((resolve) => {
+      transporter.sendMail(mailOptions, function (error) {
         if (error) {
-          return false
+          resolve(false);
         } else {
-          return true
+          resolve(true);
         }
       });
     });
-    return true
+    return result
   } catch (err) {
     // //console.log(err)
     return false

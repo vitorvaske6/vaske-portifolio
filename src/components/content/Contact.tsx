@@ -30,17 +30,18 @@ export const Contact = () => {
     const handler = (resSubmit: Submit) => {
         setResSubmit(resSubmit)
         setVisible(true)
+        setLoading(false)
     };
 
     const closeHandler = () => {
         setVisible(false);
-        if(resSubmit.code === 200) {
+        if (resSubmit.code === 200) {
             setInput(defaultInput);
             window.location.reload();
         }
     };
 
-    const onSubmit = async () => {
+    async function onSubmit() {
         setLoading(true)
         const sendTo = input.email
         const subject = input.subject
@@ -54,10 +55,9 @@ export const Contact = () => {
                 subject: subject,
                 content: content,
             }),
-        });
+        })
         const response_json = await response.json()
         handler(response_json)
-        setLoading(false)
     }
 
     const handleInput = (field: string, data: string) => {
@@ -119,7 +119,7 @@ export const Contact = () => {
                         hasIcon={false}
                         onChange={(e: FormEvent<HTMLInputElement>) => handleInput('content', e.currentTarget.value)} />
                     <span />
-                    <Button auto rounded onClick={onSubmit} isDisabled={loading} >
+                    <Button auto rounded onClick={() => onSubmit()} disabled={loading} >
                         <Text
                             css={{ color: "inherit" }}
                             size={12}
