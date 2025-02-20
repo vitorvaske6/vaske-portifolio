@@ -45,7 +45,7 @@ export const Contact = () => {
         setLoading(true)
         const sendTo = input.email
         const subject = input.subject
-        const content = `New message from:\n${input.name} ${input.lastname}.\nMessage:\n${input.content}`
+        const content = `New message from:\n[${input.email}]: ${input.name} ${input.lastname}.\nMessage:\n${input.content}`
 
         const response = await fetch(`/api/email/`, {
             method: 'POST',
