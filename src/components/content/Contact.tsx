@@ -1,8 +1,6 @@
 "use client"
-
-import { useStateContext } from "@/contexts/ContextProvider"
 import Shiny from "../Shiny"
-import { Button, Col, Grid, Image, Input, Link, Row, Text, Tooltip } from "@nextui-org/react"
+import { Button, Image, Link, Loading, Text, Tooltip } from "@nextui-org/react"
 import InputForm from "../InputForm"
 import { FormEvent, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,35 +8,40 @@ import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
 import ModalWarning from "../ModalWarning"
 
-type Submit = { 
-    code: number, 
-    message: string, 
+type Submit = {
+    code: number,
+    message: string,
     callback?: string
 }
 
 export const Contact = () => {
-    const [input, setInput] = useState({
+    const defaultInput = {
         name: '',
         lastname: '',
         subject: '',
         email: '',
         content: ''
-    })
+    }
+    const [input, setInput] = useState(defaultInput)
 
+    const [loading, setLoading] = useState(false)
     const [visible, setVisible] = useState(false);
     const [resSubmit, setResSubmit] = useState<Submit>({ code: 0, message: '', callback: undefined })
     const handler = (resSubmit: Submit) => {
-      setResSubmit(resSubmit)
-      setVisible(true)
+        setResSubmit(resSubmit)
+        setVisible(true)
     };
 
     const closeHandler = () => {
         setVisible(false);
+        if(resSubmit.code === 200) {
+            setInput(defaultInput);
+            window.location.reload();
+        }
     };
 
     const onSubmit = async () => {
-        //console.log(input)
-        
+        setLoading(true)
         const sendTo = input.email
         const subject = input.subject
         const content = `New message from:\n${input.name} ${input.lastname}.\nMessage:\n${input.content}`
@@ -53,8 +56,8 @@ export const Contact = () => {
             }),
         });
         const response_json = await response.json()
-        //console.log(`response_json`, response_json)
         handler(response_json)
+        setLoading(false)
     }
 
     const handleInput = (field: string, data: string) => {
@@ -116,14 +119,23 @@ export const Contact = () => {
                         hasIcon={false}
                         onChange={(e: FormEvent<HTMLInputElement>) => handleInput('content', e.currentTarget.value)} />
                     <span />
-                    <Button auto rounded onClick={onSubmit}>
+                    <Button auto rounded onClick={onSubmit} isDisabled={loading} >
                         <Text
                             css={{ color: "inherit" }}
                             size={12}
                             weight="bold"
                             transform="uppercase"
                         >
-                            SEND
+                            <span className="flex gap-2 align-middle">
+                                {loading && (
+                                    <span className="h-full grid place-items-center gap-2">
+                                        <Loading size="sm" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                                    </span>
+                                )}
+                                <span>
+                                    SEND
+                                </span>
+                            </span>
                         </Text>
                     </Button>
 
