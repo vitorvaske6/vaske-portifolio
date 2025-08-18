@@ -1,3 +1,24 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next", "prettier"],
+  "plugins": ["react", "prettier", "unused-imports"],
+  "rules": {
+    "react/jsx-sort-props": "error",
+    "react/self-closing-comp": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "lf",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false,
+        "arrowParens": "always"
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "jsx-a11y/alt-text": "error",
+    "react/jsx-key": "error",
+    "react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "multiline" }],
+    "react/jsx-closing-bracket-location": ["error", "tag-aligned"],
+    "react/jsx-first-prop-new-line": ["error", "multiline"],
+    "react/jsx-indent-props": ["error", 2]
+  }
 }
