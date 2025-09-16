@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Card, CardBody } from '@heroui/card'
 import { Input } from '@heroui/input'
 import { Button } from '@heroui/button'
-
+import { Textarea } from '@heroui/input'
 import { GithubIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
 import { title, subtitle } from '@/components/primitives'
 import { siteConfig } from '@/config/site'
 import DefaultLayout from '@/layouts/default'
+import { useLanguage } from '@/context/LanguageProvider'
+import { SectionTitle } from '@/components'
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -19,6 +21,8 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [emailResponse, setEmailResponse] = useState({ status: 0 })
+
+  const { t } = useLanguage()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -51,31 +55,35 @@ export default function ContactPage() {
     <DefaultLayout>
       <section className="py-16">
         <div className="text-center">
-          <h1 className={title({ size: 'md' })}>
-            Get in <span className={title({ color: 'primary', size: 'md' })}>Touch</span>
-          </h1>
-          <p className={subtitle({ class: 'mt-4 mx-auto' })}>
-            Have a question or want to work together? Send me a message!
-          </p>
+          <SectionTitle
+            primary={t('common:contact.title.primary')}
+            secondary={t('common:contact.title.secondary')}
+            order={t('common:contact.title.order')}
+          />
+          <p className={subtitle({ class: 'mt-4 mx-auto' })}>{t('common:contact.subtitle')}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
           {/* Contact Form */}
           <Card className="p-2">
             <CardBody>
-              <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
+              <h2 className="text-2xl font-bold mb-6">{t('common:contact.send_message.title')}</h2>
 
               {submitted && emailResponse.status === 200 ? (
                 <div className="bg-primary/10 p-6 rounded-lg text-center">
-                  <h3 className="text-xl font-medium text-primary mb-2">Thank you!</h3>
-                  <p>Your message has been sent successfully. I&apos;ll get back to you soon.</p>
+                  <h3 className="text-xl font-medium text-primary mb-2">
+                    {t('common:contact.send_message.success')}
+                  </h3>
+                  <p>{t('common:contact.send_message.success_message')}</p>
                 </div>
               ) : submitted && emailResponse.status !== 200 ? (
                 <div className="bg-primary/10 p-6 rounded-lg text-center">
-                  <h3 className="text-xl font-medium text-primary mb-2">Thank you!</h3>
+                  <h3 className="text-xl font-medium text-primary mb-2">
+                    {t('common:contact.send_message.error')}
+                  </h3>
                   <p>
-                    It wasn&apos;t possible to deliver your message, please try contacting me
-                    directly at {siteConfig.links.email.replace('mailto:', '')}.
+                    {t('common:contact.send_message.error')}{' '}
+                    {siteConfig.links.email.replace('mailto:', '')}.
                   </p>
                 </div>
               ) : (
@@ -83,9 +91,9 @@ export default function ContactPage() {
                   <div className="space-y-6">
                     <Input
                       isRequired
-                      label="Name"
+                      label={t('common:contact.send_message.name.label')}
                       name="name"
-                      placeholder="Your name"
+                      placeholder={t('common:contact.send_message.name.placeholder')}
                       value={formState.name}
                       variant="bordered"
                       onChange={handleChange}
@@ -93,37 +101,31 @@ export default function ContactPage() {
 
                     <Input
                       isRequired
-                      label="Email"
+                      label={t('common:contact.send_message.email.label')}
                       name="email"
-                      placeholder="your.email@example.com"
+                      placeholder={t('common:contact.send_message.email.placeholder')}
                       type="email"
                       value={formState.email}
                       variant="bordered"
                       onChange={handleChange}
                     />
-                    <div>
-                      <label className="block text-sm font-medium mb-1.5" htmlFor="message">
-                        Message <span className="text-danger">*</span>
-                      </label>
-                      <textarea
-                        required
-                        className="w-full px-3 py-2 rounded-medium bg-default-100 border border-default-200 focus:border-primary focus:outline-none text-sm min-h-[120px] resize-y"
-                        id="message"
-                        name="message"
-                        placeholder="How can I help you?"
-                        rows={4}
-                        value={formState.message}
-                        onChange={handleChange}
-                      />
-                    </div>
-
+                    <Textarea
+                      isRequired
+                      label={t('common:contact.send_message.message.label')}
+                      name="message"
+                      placeholder={t('common:contact.send_message.message.placeholder')}
+                      type="text"
+                      value={formState.message}
+                      variant="bordered"
+                      onChange={handleChange}
+                    />
                     <Button
                       className="w-full"
                       color="primary"
                       isLoading={isSubmitting}
                       type="submit"
                     >
-                      Send Message
+                      {t('common:contact.send_message.send')}
                     </Button>
                   </div>
                 </form>
@@ -134,23 +136,27 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="flex flex-col justify-between">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+              <h2 className="text-2xl font-bold mb-6">
+                {t('common:contact.contact_information.title')}
+              </h2>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Email</h3>
+                  <h3 className="text-lg font-medium mb-2">E-mail</h3>
                   <p className="text-default-600">
                     {siteConfig.links.email.replace('mailto:', '')}
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Based in</h3>
-                  <p className="text-default-600">São Paulo, Brazil</p>
+                  <h3 className="text-lg font-medium mb-2">{t('common:based')}</h3>
+                  <p className="text-default-600">São Paulo, {t('common:country')}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Follow me</h3>
+                  <h3 className="text-lg font-medium mb-2">
+                    {t('common:contact.contact_information.follow')}
+                  </h3>
                   <div className="flex gap-4 mt-2">
                     <a
                       aria-label="GitHub"
@@ -176,15 +182,18 @@ export default function ContactPage() {
             </div>
 
             {/* Availability */}
-            <div className="mt-12 p-6 bg-default-50 dark:bg-default-100 rounded-lg border border-default-200">
-              <h3 className="text-lg font-medium mb-2">Current Availability</h3>
+            <div className="mt-12 p-6 bg-default-100 dark:bg-default-100 rounded-lg border border-default-200">
+              <h3 className="text-lg font-medium mb-2">
+                {t('common:contact.contact_information.availability.title')}
+              </h3>
               <p className="text-default-600 mb-4">
-                I&apos;m currently accepting new freelance projects and open to discussion about
-                full-time opportunities.
+                {t('common:contact.contact_information.availability.description')}
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full" />
-                <span className="text-sm">Available for work</span>
+                <span className="text-sm">
+                  {t('common:contact.contact_information.availability.status')}
+                </span>
               </div>
             </div>
           </div>

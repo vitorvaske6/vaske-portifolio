@@ -17,7 +17,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   children,
 }) => {
   return (
-    <div className="bg-default-50 dark:bg-default-100 rounded-xl overflow-hidden">
+    <div className="bg-default-100 dark:bg-default-100 rounded-xl overflow-hidden">
       <div className="h-48 overflow-hidden">
         <Image
           alt={imageAlt}

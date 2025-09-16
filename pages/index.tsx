@@ -8,24 +8,27 @@ import { GithubIcon, GmailIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
 import { ProjectCard, SectionTitle } from '@/components'
 import DefaultLayout from '@/layouts/default'
+import { useLanguage } from '@/context/LanguageProvider'
+import { useGetAllProjects } from '@/config/localizedProjects'
+import { Button } from '@heroui/button'
 
 export default function IndexPage() {
+  const { t } = useLanguage()
+  const featuredProjects = useGetAllProjects().filter((project) => project.featured)
+
   return (
     <DefaultLayout>
       <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-16 md:py-24">
         {/* Left content - Text and Call to Action */}
         <div className="flex flex-col max-w-2xl">
           <h1 className={title({ size: 'lg' })}>
-            Hi, I&apos;m <span className={title({ color: 'primary', size: 'lg' })}>Vitor</span>
+            {t('common:home.greeting')}{' '}
+            <span className={title({ color: 'primary', size: 'lg' })}>Vitor</span>
           </h1>
 
-          <h2 className={title({ class: 'mt-4' })}>Software Engineer</h2>
+          <h2 className={title({ class: 'mt-4' })}>{t('common:home.role')}</h2>
 
-          <p className={subtitle({ class: 'mt-6 text-lg' })}>
-            I specialize in solving complex problems with creative and efficient software solutions.
-            I&apos;m a fast learner and a passionate developer, always eager to take on new
-            challenges.
-          </p>
+          <p className={subtitle({ class: 'mt-6 text-lg' })}>{t('common:home.description')}</p>
 
           <div className="flex gap-4 mt-8">
             <Link
@@ -37,7 +40,7 @@ export default function IndexPage() {
               })}
               href="/contact"
             >
-              Get in Touch
+              {t('common:home.getInTouch')}
             </Link>
             <a
               // isExternal
@@ -51,12 +54,12 @@ export default function IndexPage() {
               rel="noreferrer"
             >
               <GithubIcon size={20} />
-              View My Work
+              {t('common:home.viewMyWork')}
             </a>
           </div>
 
           <div className="flex items-center gap-4 mt-10">
-            <span className="text-default-600">Find me on:</span>
+            <span className="text-default-600">{t('common:home.findMeOn')}</span>
             <div className="flex gap-4">
               <Link
                 isExternal
@@ -112,24 +115,23 @@ export default function IndexPage() {
 
       {/* Featured Projects Section */}
       <section className="grid gap-6 py-16">
-        <SectionTitle primary="Projects" secondary="Featured" />
+        <SectionTitle
+          primary={t('common:home.featuredProjects.primary')}
+          secondary={t('common:home.featuredProjects.secondary')}
+          order={t('common:home.featuredProjects.order')}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* My INsights Project */}
-          <ProjectCard
-            description="Operational management platform for field teams, consolidating business data and device management"
-            href="/projects/my-insights"
-            tags={['React', 'TypeScript', 'Node.js']}
-            title="My INsights"
-          />
-
-          {/* Integratis API Project */}
-          <ProjectCard
-            description="RESTful API service for seamless system integrations"
-            href="/projects/integratis-api"
-            tags={['Express', 'MongoDB', 'Docker']}
-            title="Integratis API"
-          />
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              description={project.description}
+              href={`/projects/${project.id}`}
+              tags={project.tags}
+              title={project.title}
+            />
+          ))}
         </div>
 
         <div className="flex justify-center">
@@ -142,7 +144,7 @@ export default function IndexPage() {
             })}
             href="/projects"
           >
-            View All Projects
+            <p>{t('common:home.viewAllProjects')}</p>
           </Link>
         </div>
       </section>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from '@heroui/link'
 
 import TagList from './tag-list'
+import { useLanguage } from '@/context/LanguageProvider'
 
 type ProjectCardProps = {
   title: string
@@ -16,13 +17,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   tags,
   href = '/projects',
 }) => {
+  const { t } = useLanguage()
+
   return (
-    <div className="bg-default-50 dark:bg-default-100 rounded-xl p-6 flex flex-col hover:shadow-lg transition-all">
+    <div className="bg-default-100 dark:bg-default-100 rounded-xl p-6 flex flex-col hover:shadow-lg transition-all">
       <h3 className="text-xl font-bold">{title}</h3>
       <p className="text-default-600 mt-2">{description}</p>
       <TagList tags={tags} />
       <Link className="self-start mt-6 text-primary hover:underline" href={href}>
-        View Project
+        {t('common:home.featuredProjects.viewProject')}
       </Link>
     </div>
   )

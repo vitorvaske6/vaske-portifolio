@@ -1,0 +1,66 @@
+{
+  "myInsights": {
+    "title": "My INsights",
+    "subtitle": "Plataforma de gestão operacional",
+    "description": "A Plataforma MyINsights, também conhecida como MyIN, visa gerar insights para a gestão operacional de equipes em campo, consolidando dados de negócio, gestão de dispositivos, tickets e contratos em um único local, simplificando assim as atividades diárias e aumentando a eficiência em todo o processo.",
+    "role": "Arquitetura e Desenvolvimento",
+    "features": [
+      {
+        "title": "Autenticação Segura",
+        "description": "Página de login usando next-auth para autenticação segura do usuário."
+      },
+      {
+        "title": "Página Inicial Intuitiva",
+        "description": "A página inicial onde todos os dashboards são exibidos para acesso rápido."
+      },
+      {
+        "title": "Dashboards Interativos",
+        "description": "Integração funcional com relatórios incorporados do Power BI para visualização de dados."
+      }
+    ]
+  },
+  "integratisApi": {
+    "title": "Integratis API",
+    "subtitle": "API backend para integração de sistemas e automações ETL",
+    "description": "A Integratis API é uma API RESTful desenvolvida para integrar diferentes sistemas e bancos de dados em uma interface unificada e para gerenciar e executar automações ETL desenvolvidas pela equipe. Está atualmente em sua segunda versão, com uma arquitetura mais robusta e desempenho aprimorado. Devido a limitações orçamentárias, também desenvolvi um Serviço de Armazenamento customizado para lidar com uploads e downloads de arquivos, que é usado por outros serviços na empresa.",
+    "role": "Arquitetura e Desenvolvimento",
+    "features": [
+      {
+        "title": "Documentação Swagger",
+        "description": "Documentação gerada automaticamente usando classes DTO e decoradores."
+      },
+      {
+        "title": "Integrações e Automações ETL",
+        "description": "Gerenciamento de cron jobs para integrar e automatizar scripts Python de ETL."
+      },
+      {
+        "title": "Autenticação Segura",
+        "description": "Protegido com NestJS AuthGuard e decoradores públicos."
+      }
+    ]
+  },
+  "vaskeAdmin": {
+    "title": "Vaske Admin",
+    "subtitle": "Template de dashboard administrativo",
+    "description": "Vaske Admin é um template versátil de dashboard administrativo construído com tecnologias web modernas, projetado para ser facilmente customizável e rico em recursos para várias necessidades administrativas. É um projeto que usei principalmente para aprender e praticar React. Serviu como base para o desenvolvimento do MyINsights posteriormente.",
+    "role": "Desenvolvedor Full Stack",
+    "features": [
+      {
+        "title": "Análises Interativas",
+        "description": "Análises em tempo real com gráficos e tabelas interativas."
+      },
+      {
+        "title": "Integração Power BI",
+        "description": "Integração com Power BI com suporte a RLS."
+      },
+      {
+        "title": "Google OAuth",
+        "description": "Integração com Google OAuth para um serviço rápido de registro/login."
+      },
+      {
+        "title": "Personalização de Tema",
+        "description": "Tema personalizado para a preferência dos usuários."
+      }
+    ]
+  }
+}

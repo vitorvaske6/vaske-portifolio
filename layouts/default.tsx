@@ -4,13 +4,16 @@ import { Head } from './head'
 
 import { GithubIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
-import { siteConfig } from '@/config/site'
+import { useSiteConfig } from '@/config/site'
 import { Navbar } from '@/components/navbar'
 import Image from 'next/image'
 import { useStateContext } from '@/context/ContextProvider'
+import { useLanguage } from '@/context/LanguageProvider'
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = useStateContext()
+  const translatedSiteConfig = useSiteConfig()
+  const { t } = useLanguage()
 
   return (
     <div className="relative flex flex-col h-screen">
@@ -32,15 +35,12 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
                 height={48}
                 className="rounded-none dark:hidden light:block mb-4"
               />
-              <p className="text-default-600 max-w-xs">
-                Software Engineer solving complex problems with creative and efficient software
-                solutions.
-              </p>
+              <p className="text-default-600 max-w-xs">{t('common:footer.text')}</p>
               <div className="flex gap-4 mt-4">
-                <Link isExternal aria-label="GitHub" href={siteConfig.links.github}>
+                <Link isExternal aria-label="GitHub" href={translatedSiteConfig.links.github}>
                   <GithubIcon className="text-default-500 hover:text-primary transition-colors" />
                 </Link>
-                <Link isExternal aria-label="LinkedIn" href={siteConfig.links.linkedin}>
+                <Link isExternal aria-label="LinkedIn" href={translatedSiteConfig.links.linkedin}>
                   <LinkedInIcon className="text-default-500 hover:text-primary transition-colors" />
                 </Link>
               </div>
@@ -48,7 +48,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
             <div className="flex flex-col">
               <h3 className="font-bold mb-4">Links</h3>
               <div className="flex flex-col gap-2">
-                {siteConfig.navItems.map((item) => (
+                {translatedSiteConfig.navItems.map((item) => (
                   <Link
                     key={item.href}
                     className="text-default-600 hover:text-primary transition-colors"
@@ -60,19 +60,22 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
               </div>
             </div>
             <div className="flex flex-col">
-              <h3 className="font-bold mb-4">Contact</h3>
+              <h3 className="font-bold mb-4">{t('footer.contact')}</h3>
               <Link
                 className="text-default-600 hover:text-primary transition-colors"
-                href={siteConfig.links.email}
+                href={translatedSiteConfig.links.email}
               >
-                {siteConfig.links.email.replace('mailto:', '')}
+                {translatedSiteConfig.links.email.replace('mailto:', '')}
               </Link>
-              <p className="text-default-600 mt-4">Based in Brazil</p>
+              <p className="text-default-600 mt-4">
+                {t('common:based')} {t('common:country')}
+              </p>
             </div>
           </div>
           <div className="border-t border-default-100 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
             <p className="text-default-600 text-sm">
-              © {new Date().getFullYear()} Vitor Vasconcelos. All rights reserved.
+              © {new Date().getFullYear()} Vitor Vasconcelos. {t('common:based')}{' '}
+              {t('common:country')}.
             </p>
           </div>
         </div>

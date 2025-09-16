@@ -4,20 +4,24 @@ import { button as buttonStyles } from '@heroui/theme'
 import { subtitle, title } from '@/components/primitives'
 import { FeatureCard, SectionTitle, TagList } from '@/components'
 import DefaultLayout from '@/layouts/default'
-import { getAllProjects } from '@/config/projects'
+import { useLanguage } from '@/context/LanguageProvider'
+import { useGetAllProjects } from '@/config/localizedProjects'
 
 export default function ProjectsPage() {
   // Get all projects from our data source
-  const projects = getAllProjects()
+  const projects = useGetAllProjects()
+  const { t } = useLanguage()
 
   return (
     <DefaultLayout>
       <section className="py-16">
         <div className="text-center">
-          <SectionTitle primary="Projects" secondary="My" />
-          <p className={subtitle({ class: 'mt-4 mx-auto' })}>
-            A collection of my recent work and case studies.
-          </p>
+          <SectionTitle
+            primary={t('projects.title.primary')}
+            secondary={t('projects.title.secondary')}
+            order={t('projects.title.order')}
+          />
+          <p className={subtitle({ class: 'mt-4 mx-auto' })}>{t('projects.subtitle')}</p>
         </div>
 
         {/* Projects Grid */}
@@ -40,7 +44,7 @@ export default function ProjectsPage() {
                 })}
                 href={`/projects/${project.id}`}
               >
-                View Details
+                {t('projects.viewDetails')}
               </Link>
             </FeatureCard>
           ))}
@@ -48,10 +52,9 @@ export default function ProjectsPage() {
 
         {/* GitHub Section */}
         <div className="mt-24 text-center">
-          <h2 className={title({ size: 'sm', class: 'mb-6' })}>Explore More Projects</h2>
+          <h2 className={title({ size: 'sm', class: 'mb-6' })}>{t('projects.explore.title')}</h2>
           <p className="text-default-600 mb-8 max-w-xl mx-auto">
-            Check out more of my projects and contributions on GitHub, including open source work
-            and personal experiments.
+            {t('projects.explore.description')}
           </p>
           <Link
             isExternal
@@ -63,7 +66,7 @@ export default function ProjectsPage() {
             })}
             href="https://github.com/vitorvaske6"
           >
-            View GitHub Profile
+            {t('projects.explore.button')}
           </Link>
         </div>
       </section>

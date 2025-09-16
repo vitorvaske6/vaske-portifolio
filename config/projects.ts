@@ -24,6 +24,7 @@ export type Project = {
   role: string // Your role in the project
   tags: string[] // Technologies used for tag list
   features: ProjectFeature[] // Key features
+  featured: boolean // Whether to feature on homepage
 }
 
 export type ProjectFeature = {
@@ -85,6 +86,7 @@ const projects: Project[] = [
         imageAlt: 'Dashboard',
       },
     ],
+    featured: true,
   },
   {
     id: 'integratis-api',
@@ -136,6 +138,7 @@ const projects: Project[] = [
         imageAlt: 'Login',
       },
     ],
+    featured: true,
   },
   {
     id: 'vaske-admin',
@@ -190,6 +193,7 @@ const projects: Project[] = [
         imageAlt: 'Dark Mode',
       },
     ],
+    featured: false,
   },
 ]
 

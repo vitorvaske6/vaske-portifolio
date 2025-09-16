@@ -10,8 +10,9 @@ import {
 import { Button } from '@heroui/button'
 import { Link } from '@heroui/link'
 import NextLink from 'next/link'
-import { siteConfig } from '@/config/site'
+import { siteConfig, useSiteConfig } from '@/config/site'
 import { ThemeSwitch } from '@/components/theme-switch'
+import { LanguageSwitcher } from '@/components/language-switcher'
 import { GithubIcon, GmailIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
 import { useEffect, useState } from 'react'
@@ -22,6 +23,8 @@ import { useStateContext } from '@/context/ContextProvider'
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
+  const translatedSiteConfig = useSiteConfig()
+
   const navButtons = (
     <NavbarItem className="flex gap-4">
       <Link isExternal href={siteConfig.links.github} title="GitHub">
@@ -33,6 +36,7 @@ export const Navbar = () => {
       <Link isExternal href={siteConfig.links.email} title="Email">
         <GmailIcon className="text-default-500 hover:text-primary transition-colors" />
       </Link>
+      <LanguageSwitcher />
       <ThemeSwitch />
     </NavbarItem>
   )
@@ -58,7 +62,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {siteConfig.navItems.map((item, index) => (
+        {translatedSiteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full"
@@ -79,7 +83,7 @@ export const Navbar = () => {
         />
       </NavbarContent>
       <NavbarMenu>
-        {siteConfig.navItems.map((item, index) => (
+        {translatedSiteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full"

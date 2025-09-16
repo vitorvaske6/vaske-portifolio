@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "programmingLanguages": "Linguagens de Programação",
+    "frameworks": "Frameworks e Bibliotecas",
+    "tools": "Ferramentas e Tecnologias"
+  },
+  "levels": {
+    "expert": "Especialista",
+    "advanced": "Avançado",
+    "intermediate": "Intermediário",
+    "beginner": "Iniciante"
+  },
+  "experience": [
+    {
+      "role": "Engenheiro de Software",
+      "company": "F1RST Digital Services (Santander)",
+      "period": "2025 - Presente",
+      "description": "Como desenvolvedor de automação na F1RST Digital Services, sou responsável por automatizar o provisionamento de serviços de banco de dados NoSQL em nuvem e on-premises. Usando playbooks Ansible, workflow Camunda e outras linguagens de programação como Python, JavaScript e Shell, garanto sua estabilidade, segurança e eficiência"
+    },
+    {
+      "role": "Desenvolvedor Fullstack e Líder Técnico",
+      "company": "MGITECH",
+      "period": "2022 - 2025",
+      "description": "Como desenvolvedor fullstack e líder técnico na MGITECH, me especializei em soluções orientadas por dados e desenvolvimento de aplicações web. Minha expertise incluía construir dashboards interativos com Power BI, automatizar processos ETL usando Python e otimizar consultas SQL para melhorar operações de negócio. Por fim, liderei a integração de dashboards Power BI Embedded em uma aplicação Next.js, utilizando TypeScript e Prisma com SQL Server para performance otimizada. Além disso, tive experiência em Integração e Implementação Contínua (CI/CD) e testes unitários, garantindo qualidade e confiabilidade do código"
+    },
+    {
+      "role": "Estagiário Analista de Soluções",
+      "company": "Printer One",
+      "period": "2021 - 2021",
+      "description": "Fui responsável por implementar uma integração entre o sistema de gerenciamento de documentos open-source \"Alfresco\" e a ferramenta de BI self-service \"Power BI\" durante este estágio."
+    }
+  ],
+  "education": [
+    {
+      "role": "Pós-graduação em Engenharia de Software",
+      "institution": "Universidade de Mogi das Cruzes",
+      "period": "2024-2025"
+    },
+    {
+      "role": "Certificação de Inglês - B2 Linguaskill (Avançado)",
+      "institution": "Universidade de Cambridge",
+      "period": "2022"
+    },
+    {
+      "role": "Bacharelado em Sistemas de Informação",
+      "institution": "Universidade de Mogi das Cruzes",
+      "period": "2018-2021"
+    }
+  ]
+}

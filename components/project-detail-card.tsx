@@ -11,7 +11,7 @@ type ProjectDetailCardProps = {
 
 export const ProjectDetailCard: React.FC<ProjectDetailCardProps> = ({ details }) => {
   return (
-    <div className="bg-default-50 dark:bg-default-100 rounded-xl p-6">
+    <div className="bg-default-100 dark:bg-default-100 rounded-xl p-6">
       <h3 className="text-lg font-bold mb-4">Project Details</h3>
       <div className="space-y-3">
         {details.map((detail, index) => (

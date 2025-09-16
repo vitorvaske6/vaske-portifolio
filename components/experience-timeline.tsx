@@ -31,11 +31,11 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
             key={exp.id}
             className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
           >
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-default-50 dark:bg-default-100 group-odd:md:translate-x-0 z-10">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-default-100 dark:bg-default-100 group-odd:md:translate-x-0 z-10">
               <span className="text-primary">{exp.id}</span>
             </div>
 
-            <div className="w-full md:w-5/12 bg-default-50 dark:bg-default-100 p-6 rounded-lg shadow-md">
+            <div className="w-full md:w-5/12 bg-default-100 dark:bg-default-100 p-6 rounded-lg shadow-md">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0 mb-3">
                 <h3 className="text-xl font-bold">{exp.role}</h3>
                 <span className="text-sm text-default-600">{exp.period}</span>

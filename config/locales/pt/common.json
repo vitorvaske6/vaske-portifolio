@@ -1,0 +1,161 @@
+{
+  "country": "Brasil",
+  "based": "Atuação no",
+  "navigation": {
+    "home": "Início",
+    "projects": "Projetos",
+    "about": "Sobre",
+    "contact": "Contato",
+    "skills": "Habilidades"
+  },
+  "home": {
+    "greeting": "Olá, me chamo",
+    "role": "Engenheiro de Software",
+    "description": "Me especializo em resolver problemas complexos com soluções de software criativas e eficientes. Sou um desenvolvedor apaixonado com aprendizado rápido e estou sempre ansioso para enfrentar novos desafios.",
+    "getInTouch": "Entre em Contato",
+    "viewMyWork": "Veja Meu Trabalho",
+    "findMeOn": "Me encontre em:",
+    "featuredProjects": {
+      "order": "secondary",
+      "primary": "Projetos",
+      "secondary": "Em Destaque",
+      "viewProject": "Ver Projeto"
+    },
+    "viewAllProjects": "Ver Todos os Projetos"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "subtitle": "Conheça mais sobre minha trajetória, habilidades e paixões",
+    "description": "Sou um engenheiro de software apaixonado com experiência em desenvolvimento full-stack, especializado em tecnologias web modernas e soluções orientadas por dados.",
+    "skills": "Habilidades",
+    "experience": "Experiência",
+    "education": "Educação",
+    "personalInfo": {
+      "name": "Nome:",
+      "email": "Email:",
+      "location": "Localização:",
+      "availability": "Disponibilidade:",
+      "availabilityText": "Atualmente estou aceitando novos projetos freelance e aberto a discussões sobre oportunidades de tempo integral.",
+      "contactMe": "Entre em Contato",
+      "downloadResume": "Baixar Currículo"
+    },
+    "bio": {
+      "paragraph1": "Sou um Engenheiro de Software com paixão por resolver problemas complexos. Com expertise em desenvolvimento web e microsserviços, me especializo em construir sites e aplicações responsivas e/ou eficientes usando tecnologias modernas como React, Next.js, TypeScript e Node.js, apesar de não ser escravo de nenhuma stack tecnológica específica.",
+      "paragraph2": "Embora eu não seja um designer, tenho uma forte apreciação pelos princípios de design, minha abordagem combina expertise técnica com uma forte sensibilidade de design, permitindo-me fazer a ponte entre design e desenvolvimento para criar experiências de usuário perfeitas. Tenho particular interesse em ideias inovadoras que possam instigar minha criatividade e trazer desafios suficientes para me sentir realizado a cada marco alcançado em cada projeto."
+    },
+    "skillsSection": {
+      "title": "Minhas Habilidades",
+      "subtitle": "Uma visão abrangente das minhas habilidades técnicas e expertise.",
+      "programmingLanguages": "Linguagens de Programação",
+      "frameworks": "Frameworks e Bibliotecas",
+      "tools": "Ferramentas e Tecnologias"
+    },
+    "experienceEducation": {
+      "title": "Educação e Experiência"
+    },
+    "personalInterests": {
+      "title": "Interesses Pessoais",
+      "newTech": {
+        "title": "Novas Tecnologias",
+        "description": "Sempre explorando as últimas tendências e ferramentas tecnológicas"
+      },
+      "automation": {
+        "title": "Automação",
+        "description": "Otimizando fluxos de trabalho e processos através da automação"
+      },
+      "ux": {
+        "title": "Experiência do Usuário",
+        "description": "Criando interfaces intuitivas e envolventes"
+      },
+      "api": {
+        "title": "REST API",
+        "description": "Construindo arquiteturas de API escaláveis e eficientes"
+      }
+    }
+  },
+  "contact": {
+    "title": {
+      "primary": "Contato",
+      "secondary": "Entre em",
+      "order": "primary"
+    },
+    "subtitle": "Tem uma pergunta ou quer trabalhar comigo? Me envie uma mensagem!",
+    "send_message": {
+      "title": "Enviar Mensagem",
+      "name": {
+        "label": "Nome",
+        "placeholder": "Digite seu Nome"
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Para que eu possa entrar em contato com você"
+      },
+      "message": {
+        "label": "Mensagem",
+        "placeholder": "Como posso ajudar?"
+      },
+      "send": "Enviar Mensagem",
+      "sending": "Enviando...",
+      "success": "Obrigado!",
+      "success_message": "Sua mensagem foi enviada com sucesso. Eu retornarei em breve.",
+      "error": "Não foi possível entregar sua mensagem, por favor tente entrar em contato comigo diretamente em"
+    },
+    "contact_information": {
+      "title": "Informações de Contato",
+      "follow": "Me siga nas redes sociais",
+      "availability": {
+        "title": "Disponibilidade",
+        "description": "Atualmente estou aceitando novos projetos freelance e aberto a discussões sobre oportunidades de tempo integral.",
+        "status": "Disponível para Trabalho"
+      }
+    }
+  },
+  "projects": {
+    "title": {
+      "primary": "Projetos",
+      "secondary": "Meus",
+      "order": "primary"
+    },
+    "subtitle": "Aqui estão alguns dos projetos em que trabalhei. Cada projeto representa um desafio único e uma experiência de aprendizado.",
+    "viewDetails": "Ver Detalhes",
+    "explore": {
+      "title": "Explorar Mais Projetos",
+      "description": "Confira mais dos meus projetos e estudos de caso no GitHub.",
+      "button": "Ver Perfil do GitHub"
+    },
+    "viewProject": "Ver Projeto",
+    "viewLive": "Ver Ao Vivo",
+    "viewCode": "Ver Código",
+    "features": "Principais Funcionalidades",
+    "technologies": "Tecnologias Utilizadas",
+    "timeline": "Cronograma",
+    "role": "Função",
+    "client": "Cliente",
+    "status": {
+      "inProduction": "Em Produção",
+      "development": "Em Desenvolvimento",
+      "completed": "Concluído"
+    },
+    "repository": {
+      "private": "Repositório Privado",
+      "public": "Repositório Público"
+    }
+  },
+  "footer": {
+    "text": "Engenheiro de Software resolvendo problemas complexos com soluções de software criativas e eficientes.",
+    "rights": "Todos os direitos reservados.",
+    "contact": "Contato"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "tryAgain": "Tentar Novamente",
+    "close": "Fechar",
+    "open": "Abrir",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "yes": "Sim",
+    "no": "Não",
+    "language": "Idioma"
+  }
+}
