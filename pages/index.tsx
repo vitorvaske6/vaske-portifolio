@@ -1,6 +1,9 @@
 import { Link } from '@heroui/link'
 import { Image } from '@heroui/image'
 import { button as buttonStyles } from '@heroui/theme'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { GetStaticProps } from 'next'
 
 import { siteConfig } from '@/config/site'
 import { title, subtitle } from '@/components/primitives'
@@ -8,13 +11,12 @@ import { GithubIcon, GmailIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
 import { ProjectCard, SectionTitle } from '@/components'
 import DefaultLayout from '@/layouts/default'
-import { useLanguage } from '@/context/LanguageProvider'
-import { useGetAllProjects } from '@/config/localizedProjects'
+import { getAllProjects } from '@/config/projects'
 import { Button } from '@heroui/button'
 
 export default function IndexPage() {
-  const { t } = useLanguage()
-  const featuredProjects = useGetAllProjects().filter((project) => project.featured)
+  const { t } = useTranslation(['common', 'projects'])
+  const featuredProjects = getAllProjects().filter((project) => project.featured)
 
   return (
     <DefaultLayout>
@@ -22,13 +24,13 @@ export default function IndexPage() {
         {/* Left content - Text and Call to Action */}
         <div className="flex flex-col max-w-2xl">
           <h1 className={title({ size: 'lg' })}>
-            {t('common:home.greeting')}{' '}
+            {t('home.greeting')}{' '}
             <span className={title({ color: 'primary', size: 'lg' })}>Vitor</span>
           </h1>
 
-          <h2 className={title({ class: 'mt-4' })}>{t('common:home.role')}</h2>
+          <h2 className={title({ class: 'mt-4' })}>{t('home.role')}</h2>
 
-          <p className={subtitle({ class: 'mt-6 text-lg' })}>{t('common:home.description')}</p>
+          <p className={subtitle({ class: 'mt-6 text-lg' })}>{t('home.description')}</p>
 
           <div className="flex gap-4 mt-8">
             <Link
@@ -40,7 +42,7 @@ export default function IndexPage() {
               })}
               href="/contact"
             >
-              {t('common:home.getInTouch')}
+              {t('home.getInTouch')}
             </Link>
             <a
               // isExternal
@@ -54,12 +56,12 @@ export default function IndexPage() {
               rel="noreferrer"
             >
               <GithubIcon size={20} />
-              {t('common:home.viewMyWork')}
+              {t('home.viewMyWork')}
             </a>
           </div>
 
           <div className="flex items-center gap-4 mt-10">
-            <span className="text-default-600">{t('common:home.findMeOn')}</span>
+            <span className="text-default-600">{t('home.findMeOn')}</span>
             <div className="flex gap-4">
               <Link
                 isExternal
@@ -102,9 +104,9 @@ export default function IndexPage() {
         <div className="flex justify-center items-center">
           <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
             <Image
-              alt="Vitor Vaske"
+              alt="Vitor Vasconcelos"
               className="object-cover"
-              fallbackSrc="https://via.placeholder.com/320x320?text=Vitor+Vaske"
+              fallbackSrc="https://via.placeholder.com/320x320?text=Vitor+Vasconcelos"
               height={320}
               src="/old_project/images/profile2.jpeg"
               width={320}
@@ -116,9 +118,9 @@ export default function IndexPage() {
       {/* Featured Projects Section */}
       <section className="grid gap-6 py-16">
         <SectionTitle
-          primary={t('common:home.featuredProjects.primary')}
-          secondary={t('common:home.featuredProjects.secondary')}
-          order={t('common:home.featuredProjects.order')}
+          primary={t('home.featuredProjects.primary')}
+          secondary={t('home.featuredProjects.secondary')}
+          order={t('home.featuredProjects.order')}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,10 +128,10 @@ export default function IndexPage() {
           {featuredProjects.map((project) => (
             <ProjectCard
               key={project.id}
-              description={project.description}
+              description={t(`projects:${project.id}.description`)}
               href={`/projects/${project.id}`}
               tags={project.tags}
-              title={project.title}
+              title={t(`projects:${project.id}.title`)}
             />
           ))}
         </div>
@@ -144,10 +146,18 @@ export default function IndexPage() {
             })}
             href="/projects"
           >
-            <p>{t('common:home.viewAllProjects')}</p>
+            <p>{t('home.viewAllProjects')}</p>
           </Link>
         </div>
       </section>
     </DefaultLayout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'projects'])),
+    },
+  }
 }

@@ -145,6 +145,21 @@
     "repository": {
       "private": "Repositório Privado",
       "public": "Repositório Público"
+    },
+    "details": {
+      "client": "Cliente",
+      "status": "Status",
+      "timeline": "Cronograma",
+      "role": "Minha Função",
+      "inProduction": "Em Produção",
+      "inDevelopment": "Em Desenvolvimento",
+      "privateRepository": "Repositório Privado",
+      "viewOnGithub": "Ver no GitHub",
+      "keyFeatures": "Principais Funcionalidades"
+    },
+    "project_page": {
+      "not_found": "Projeto Não Encontrado",
+      "not_found_message": "O projeto que você está procurando não existe."
     }
   },
   "footer": {

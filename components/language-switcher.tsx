@@ -1,46 +1,51 @@
 import React from 'react'
 import { Button } from '@heroui/button'
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem
-} from "@heroui/dropdown";
-import { useLanguage } from '@/context/LanguageProvider'
-import { GlobeIcon } from './icons';
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { BrazilFlag, GlobeIcon, UsFlag } from './icons'
 
-export const LanguageSwitcher: React.FC = () => {
-  const { language, setLanguage, t } = useLanguage()
+export const LanguageSwitcher: React.FC<{ className?: string }> = ({ className }) => {
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
   const handleLanguageChange = (key: string) => {
-    setLanguage(key as 'en' | 'pt')
+    const newLocale = key as 'en' | 'pt'
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: router.query,
+      },
+      router.asPath,
+      { locale: newLocale }
+    )
   }
 
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button
-          isIconOnly
-          variant="ghost"
-          size="sm"
-          className="min-w-10 h-10"
-        >
-          <GlobeIcon size={18} />
-        </Button>
+        <div className={className}>
+          <GlobeIcon size={24} />
+        </div>
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Language selection"
         onAction={(key) => handleLanguageChange(key as string)}
-        selectedKeys={[language]}
+        selectedKeys={[router.locale || 'en']}
         selectionMode="single"
       >
-        <DropdownItem key="en" className="flex items-center gap-2">
-          <span className="text-lg">🇺🇸</span>
-          English
+        <DropdownItem key="en">
+          <p className="flex items-center gap-2 ">
+            <UsFlag />
+            English
+          </p>
         </DropdownItem>
-        <DropdownItem key="pt" className="flex items-center gap-2">
-          <span className="text-lg">🇧🇷</span>
-          Português
+        <DropdownItem key="pt">
+          <p className="flex items-center gap-2 ">
+            <BrazilFlag />
+            Português
+          </p>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

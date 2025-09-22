@@ -36,8 +36,8 @@ export const Navbar = () => {
       <Link isExternal href={siteConfig.links.email} title="Email">
         <GmailIcon className="text-default-500 hover:text-primary transition-colors" />
       </Link>
-      <LanguageSwitcher />
       <ThemeSwitch />
+      <LanguageSwitcher className="text-default-500 hover:text-primary transition-colors cursor-pointer" />
     </NavbarItem>
   )
 

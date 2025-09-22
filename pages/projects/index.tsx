@@ -1,16 +1,18 @@
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import { Link } from '@heroui/link'
 import { button as buttonStyles } from '@heroui/theme'
 
 import { subtitle, title } from '@/components/primitives'
 import { FeatureCard, SectionTitle, TagList } from '@/components'
 import DefaultLayout from '@/layouts/default'
-import { useLanguage } from '@/context/LanguageProvider'
-import { useGetAllProjects } from '@/config/localizedProjects'
+import { getAllProjects } from '@/config/projects'
 
 export default function ProjectsPage() {
   // Get all projects from our data source
-  const projects = useGetAllProjects()
-  const { t } = useLanguage()
+  const projects = getAllProjects()
+  const { t } = useTranslation(['common', 'projects'])
 
   return (
     <DefaultLayout>
@@ -29,10 +31,10 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <FeatureCard
               key={project.id}
-              description={project.subtitle}
-              imageAlt={project.title}
+              description={t(`projects:${project.id}.subtitle`)}
+              imageAlt={t(`projects:${project.id}.title`)}
               imageSrc={project.coverImage}
-              title={project.title}
+              title={t(`projects:${project.id}.title`)}
             >
               <TagList tags={project.tags} />
               <Link
@@ -72,4 +74,12 @@ export default function ProjectsPage() {
       </section>
     </DefaultLayout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'projects'])),
+    },
+  }
 }

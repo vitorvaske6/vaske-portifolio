@@ -1,4 +1,5 @@
 import { Link } from '@heroui/link'
+import { useTranslation } from 'next-i18next'
 
 import { Head } from './head'
 
@@ -8,12 +9,11 @@ import { useSiteConfig } from '@/config/site'
 import { Navbar } from '@/components/navbar'
 import Image from 'next/image'
 import { useStateContext } from '@/context/ContextProvider'
-import { useLanguage } from '@/context/LanguageProvider'
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = useStateContext()
   const translatedSiteConfig = useSiteConfig()
-  const { t } = useLanguage()
+  const { t } = useTranslation('common')
 
   return (
     <div className="relative flex flex-col h-screen">
@@ -35,7 +35,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
                 height={48}
                 className="rounded-none dark:hidden light:block mb-4"
               />
-              <p className="text-default-600 max-w-xs">{t('common:footer.text')}</p>
+              <p className="text-default-600 max-w-xs">{t('footer.text')}</p>
               <div className="flex gap-4 mt-4">
                 <Link isExternal aria-label="GitHub" href={translatedSiteConfig.links.github}>
                   <GithubIcon className="text-default-500 hover:text-primary transition-colors" />
@@ -68,14 +68,13 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
                 {translatedSiteConfig.links.email.replace('mailto:', '')}
               </Link>
               <p className="text-default-600 mt-4">
-                {t('common:based')} {t('common:country')}
+                {t('based')} {t('country')}
               </p>
             </div>
           </div>
           <div className="border-t border-default-100 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
             <p className="text-default-600 text-sm">
-              © {new Date().getFullYear()} Vitor Vasconcelos. {t('common:based')}{' '}
-              {t('common:country')}.
+              © {new Date().getFullYear()} Vitor Vasconcelos. {t('based')} {t('country')}.
             </p>
           </div>
         </div>

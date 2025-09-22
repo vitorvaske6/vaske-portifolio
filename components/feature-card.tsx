@@ -24,7 +24,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
           className="object-cover w-full"
           height={300}
           src={imageSrc}
-          width={400}
+          width={'100%'}
         />
       </div>
       <div className="p-5">

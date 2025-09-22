@@ -1,4 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import { Image } from '@heroui/image'
 
 import {
@@ -6,7 +8,6 @@ import {
   ProjectDetailCard,
   ProjectHeader,
   ProjectNavigation,
-  TechnologyStack,
   TagList,
 } from '@/components'
 import DefaultLayout from '@/layouts/default'
@@ -21,12 +22,14 @@ type ProjectPageProps = {
 }
 
 export default function ProjectPage({ project, navigation }: ProjectPageProps) {
+  const { t } = useTranslation(['common', 'projects'])
+
   if (!project) {
     return (
       <DefaultLayout>
         <div className="py-16 text-center">
-          <h1 className="text-2xl font-bold">Project not found</h1>
-          <p className="mt-4">The project you are looking for does not exist.</p>
+          <h1 className="text-2xl font-bold">{t('projects.project_page.not_found')}</h1>
+          <p className="mt-4">{t('projects.project_page.not_found_message')}</p>
         </div>
       </DefaultLayout>
     )
@@ -37,7 +40,7 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
     ...(project.client
       ? [
           {
-            label: 'Client',
+            label: t(`${project.id}.details.client`),
             value: (
               <p className="font-medium flex items-center gap-2">
                 {project.client.logoSrc && (
@@ -56,20 +59,20 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
         ]
       : []),
     {
-      label: 'Status',
+      label: t(`projects.details.status`),
       value: project.isInProduction ? (
-        <span className="text-success">In Production</span>
+        <span className="text-success">{t(`projects:${project.id}.status`)}</span>
       ) : (
-        <span className="text-warning">In Development</span>
+        <span className="text-warning">{t(`projects:${project.id}.status`)}</span>
       ),
     },
     {
-      label: 'Timeline',
+      label: t(`projects.details.timeline`),
       value: project.timeline,
     },
     {
-      label: 'My Role',
-      value: project.role,
+      label: t(`projects.details.role`),
+      value: t(`projects:${project.id}.role`),
     },
   ]
 
@@ -92,17 +95,17 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
 
         {/* Project Header */}
         <ProjectHeader
-          logoAlt={project.logoAlt || `${project.title} logo`}
+          logoAlt={project.logoAlt || `${t(`projects:${project.id}.title`)} logo`}
           logoSrc={project.logoSrc}
-          subtitle={project.subtitle}
-          title={project.title}
+          subtitle={t(`projects:${project.id}.subtitle`)}
+          title={t(`projects:${project.id}.title`)}
           websiteUrl={project.websiteUrl}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {/* Main description */}
           <div className="lg:col-span-2 space-y-6">
-            <p className="text-lg leading-relaxed">{project.description}</p>
+            <p className="text-lg leading-relaxed">{t(`projects:${project.id}.description`)}</p>
 
             {/* Tags */}
             <div className="pt-4">
@@ -121,7 +124,9 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12" />
                 </svg>
                 {project.isPrivate ? (
-                  <span className="text-default-500 cursor-not-allowed">Private Repository</span>
+                  <span className="text-default-500 cursor-not-allowed">
+                    {t(`${project.id}.details.privateRepository`)}
+                  </span>
                 ) : (
                   <a
                     className="inline-flex items-center gap-2 text-primary hover:underline transition-colors"
@@ -129,7 +134,7 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    View on GitHub
+                    {t(`${project.id}.details.viewOnGithub`)}
                   </a>
                 )}
               </div>
@@ -145,15 +150,15 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
         {/* Features */}
         {project.features && project.features.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8">Key Features</h2>
+            <h2 className="text-3xl font-bold mb-8">{t(`projects.details.keyFeatures`)}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {project.features.map((feature, index) => (
                 <FeatureCard
                   key={index}
-                  description={feature.description}
+                  description={t(`projects:${project.id}.features.${index}.description`)}
                   imageAlt={feature.imageAlt}
                   imageSrc={feature.imageSrc}
-                  title={feature.title}
+                  title={t(`projects:${project.id}.features.${index}.title`)}
                 />
               ))}
             </div>
@@ -173,12 +178,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking', // Allow pages to be generated on-demand for other locales
   }
 }
 
 // Generate dynamic navigation and project data
-export const getStaticProps: GetStaticProps<ProjectPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ProjectPageProps> = async ({ params, locale }) => {
   const id = params?.id as string
   const project = getProjectById(id)
 
@@ -222,6 +227,7 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async ({ params 
     props: {
       project,
       navigation,
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'projects'])),
     },
     // Enable ISR for dynamic updates
     revalidate: 60 * 60 * 24, // Revalidate once per day

@@ -1,4 +1,4 @@
-import { useLanguage } from '@/context/LanguageProvider'
+import { useTranslation } from 'next-i18next'
 
 export type SiteConfig = {
   name: string
@@ -16,26 +16,26 @@ export type SiteConfig = {
 }
 
 export const useSiteConfig = (): SiteConfig => {
-  const { t } = useLanguage()
+  const { t } = useTranslation('common')
 
   return {
-    name: 'Vitor Vaske',
-    description: t('common:about.description'),
+    name: 'Vitor Vasconcelos',
+    description: t('about.description'),
     navItems: [
       {
-        label: t('common:navigation.home'),
+        label: t('navigation.home'),
         href: '/',
       },
       {
-        label: t('common:navigation.projects'),
+        label: t('navigation.projects'),
         href: '/projects',
       },
       {
-        label: t('common:navigation.about'),
+        label: t('navigation.about'),
         href: '/about',
       },
       // {
-      //   label: t('common:navigation.contact'),
+      //   label: t('navigation.contact'),
       //   href: '/contact',
       // },
     ],
@@ -50,7 +50,7 @@ export const useSiteConfig = (): SiteConfig => {
 
 // Keep the original export for backward compatibility
 export const siteConfig = {
-  name: 'Vitor Vaske',
+  name: 'Vitor Vasconcelos',
   description: 'Software Engineer Portfolio',
   navItems: [
     {
