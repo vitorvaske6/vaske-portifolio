@@ -28,13 +28,13 @@ export const Navbar = () => {
 
   const navButtons = (
     <NavbarItem className="flex gap-4">
-      <Link isExternal href={siteConfig.links.github} title="GitHub">
+      <Link target="_blank" isExternal href={siteConfig.links.github} title="GitHub">
         <GithubIcon className="text-default-500 hover:text-primary transition-colors" />
       </Link>
-      <Link isExternal href={siteConfig.links.linkedin} title="LinkedIn">
+      <Link target="_blank" isExternal href={siteConfig.links.linkedin} title="LinkedIn">
         <LinkedInIcon className="text-default-500 hover:text-primary transition-colors" />
       </Link>
-      <Link isExternal href={siteConfig.links.email} title="Email">
+      <Link target="_blank" isExternal href={siteConfig.links.email} title="Email">
         <GmailIcon className="text-default-500 hover:text-primary transition-colors" />
       </Link>
       <ThemeSwitch />

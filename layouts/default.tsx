@@ -1,19 +1,20 @@
 import { Link } from '@heroui/link'
 import { useTranslation } from 'next-i18next'
-
 import { Head } from './head'
-
 import { GithubIcon } from '@/components/icons'
 import { LinkedInIcon } from '@/components/icons'
 import { useSiteConfig } from '@/config/site'
 import { Navbar } from '@/components/navbar'
 import Image from 'next/image'
 import { useStateContext } from '@/context/ContextProvider'
+import { useRouter } from 'next/router'
+import NextLink from 'next/link'
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const { currentTheme } = useStateContext()
   const translatedSiteConfig = useSiteConfig()
   const { t } = useTranslation('common')
+  const router = useRouter()
 
   return (
     <div className="relative flex flex-col h-screen">
@@ -37,10 +38,20 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
               />
               <p className="text-default-600 max-w-xs">{t('footer.text')}</p>
               <div className="flex gap-4 mt-4">
-                <Link isExternal aria-label="GitHub" href={translatedSiteConfig.links.github}>
+                <Link
+                  target="_blank"
+                  isExternal
+                  aria-label="GitHub"
+                  href={translatedSiteConfig.links.github}
+                >
                   <GithubIcon className="text-default-500 hover:text-primary transition-colors" />
                 </Link>
-                <Link isExternal aria-label="LinkedIn" href={translatedSiteConfig.links.linkedin}>
+                <Link
+                  target="_blank"
+                  isExternal
+                  aria-label="LinkedIn"
+                  href={translatedSiteConfig.links.linkedin}
+                >
                   <LinkedInIcon className="text-default-500 hover:text-primary transition-colors" />
                 </Link>
               </div>
@@ -49,13 +60,14 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
               <h3 className="font-bold mb-4">Links</h3>
               <div className="flex flex-col gap-2">
                 {translatedSiteConfig.navItems.map((item) => (
-                  <Link
+                  <NextLink
                     key={item.href}
-                    className="text-default-600 hover:text-primary transition-colors"
                     href={item.href}
+                    locale={router.locale}
+                    className="text-default-600 hover:text-primary transition-colors"
                   >
                     {item.label}
-                  </Link>
+                  </NextLink>
                 ))}
               </div>
             </div>

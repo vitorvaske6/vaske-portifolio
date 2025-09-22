@@ -46,6 +46,7 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                     isExternal
                     className="hover:text-primary transition-colors"
                     href={exp.companyUrl}
+                    target="_blank"
                   >
                     {exp.company}
                   </Link>

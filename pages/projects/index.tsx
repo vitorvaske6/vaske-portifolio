@@ -40,17 +40,17 @@ export default function ProjectsPage() {
               title={t(`projects:${project.id}.title`)}
             >
               <TagList tags={project.tags} />
-              <NextLink href={`/projects/${project.id}`} locale={router.locale}>
-                <Link
-                  className={buttonStyles({
-                    className: 'mt-6',
-                    color: 'primary',
-                    radius: 'full',
-                    variant: 'light',
-                  })}
-                >
-                  {t('projects.viewDetails')}
-                </Link>
+              <NextLink
+                href={`/projects/${project.id}`}
+                locale={router.locale}
+                className={buttonStyles({
+                  className: 'mt-6',
+                  color: 'primary',
+                  radius: 'full',
+                  variant: 'light',
+                })}
+              >
+                {t('projects.viewDetails')}
               </NextLink>
             </FeatureCard>
           ))}
@@ -71,6 +71,7 @@ export default function ProjectsPage() {
               variant: 'shadow',
             })}
             href="https://github.com/vitorvaske6"
+            target="_blank"
           >
             {t('projects.explore.button')}
           </Link>

@@ -72,6 +72,7 @@ export default function IndexPage() {
                 aria-label="GitHub"
                 href={siteConfig.links.github}
                 title={siteConfig.links.github}
+                target="_blank"
               >
                 <GithubIcon
                   className="text-default-700 hover:text-primary transition-colors"
@@ -83,6 +84,7 @@ export default function IndexPage() {
                 aria-label="LinkedIn"
                 href={siteConfig.links.linkedin}
                 title={siteConfig.links.linkedin}
+                target="_blank"
               >
                 <LinkedInIcon
                   className="text-default-700 hover:text-primary transition-colors"
@@ -94,6 +96,7 @@ export default function IndexPage() {
                 aria-label="Email"
                 href={siteConfig.links.email}
                 title={siteConfig.links.email}
+                target="_blank"
               >
                 <GmailIcon
                   className="text-default-700 hover:text-primary transition-colors"

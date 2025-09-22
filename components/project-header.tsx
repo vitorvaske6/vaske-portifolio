@@ -5,6 +5,7 @@ import { button as buttonStyles } from '@heroui/theme'
 
 import { title as titleStyle, subtitle as subtitleStyle } from '@/components/primitives'
 import { useTranslation } from 'react-i18next'
+import NextLink from 'next/link'
 
 type ProjectHeaderProps = {
   title: string
@@ -43,7 +44,7 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({
       </div>
       {websiteUrl && (
         <div className="md:ml-auto flex gap-4">
-          <Link
+          <NextLink
             className={buttonStyles({
               color: 'primary',
               radius: 'full',
@@ -70,7 +71,7 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({
               <line x1="10" x2="21" y1="14" y2="3" />
             </svg>
             {t('common:projects.visitClientWebsite')}
-          </Link>
+          </NextLink>
         </div>
       )}
     </div>
