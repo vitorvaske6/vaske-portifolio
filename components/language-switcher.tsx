@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '@heroui/button'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
