@@ -1,5 +1,6 @@
 import { Image } from '@heroui/image'
 import { Link } from '@heroui/link'
+import NextLink from 'next/link'
 import { button as buttonStyles } from '@heroui/theme'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -76,16 +77,17 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-8">
-              <Link
+              <NextLink
+                href="/contact"
+                locale={router.locale}
                 className={buttonStyles({
                   color: 'primary',
                   radius: 'full',
                   variant: 'shadow',
                 })}
-                href="/contact"
               >
                 {t('about.personalInfo.contactMe')}
-              </Link>
+              </NextLink>
               <a
                 className={buttonStyles({
                   className: 'ml-4',

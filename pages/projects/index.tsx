@@ -2,6 +2,8 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { Link } from '@heroui/link'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import { button as buttonStyles } from '@heroui/theme'
 
 import { subtitle, title } from '@/components/primitives'
@@ -13,6 +15,7 @@ export default function ProjectsPage() {
   // Get all projects from our data source
   const projects = getAllProjects()
   const { t } = useTranslation(['common', 'projects'])
+  const router = useRouter()
 
   return (
     <DefaultLayout>
@@ -37,17 +40,18 @@ export default function ProjectsPage() {
               title={t(`projects:${project.id}.title`)}
             >
               <TagList tags={project.tags} />
-              <Link
-                className={buttonStyles({
-                  className: 'mt-6',
-                  color: 'primary',
-                  radius: 'full',
-                  variant: 'light',
-                })}
-                href={`/projects/${project.id}`}
-              >
-                {t('projects.viewDetails')}
-              </Link>
+              <NextLink href={`/projects/${project.id}`} locale={router.locale}>
+                <Link
+                  className={buttonStyles({
+                    className: 'mt-6',
+                    color: 'primary',
+                    radius: 'full',
+                    variant: 'light',
+                  })}
+                >
+                  {t('projects.viewDetails')}
+                </Link>
+              </NextLink>
             </FeatureCard>
           ))}
         </div>

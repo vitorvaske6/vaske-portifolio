@@ -4,6 +4,7 @@ import { Image } from '@heroui/image'
 import { button as buttonStyles } from '@heroui/theme'
 
 import { title as titleStyle, subtitle as subtitleStyle } from '@/components/primitives'
+import { useTranslation } from 'react-i18next'
 
 type ProjectHeaderProps = {
   title: string
@@ -24,6 +25,7 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   const words = title.split(' ')
   const lastWord = words.pop()
   const firstPart = words.join(' ')
+  const { t } = useTranslation(['common'])
 
   return (
     <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
@@ -67,7 +69,7 @@ export const ProjectHeader: React.FC<ProjectHeaderProps> = ({
               <polyline points="15 3 21 3 21 9" />
               <line x1="10" x2="21" y1="14" y2="3" />
             </svg>
-            Visit Website
+            {t('common:projects.visitClientWebsite')}
           </Link>
         </div>
       )}

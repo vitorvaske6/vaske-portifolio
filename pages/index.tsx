@@ -4,6 +4,8 @@ import { button as buttonStyles } from '@heroui/theme'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticProps } from 'next'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 
 import { siteConfig } from '@/config/site'
 import { title, subtitle } from '@/components/primitives'
@@ -16,6 +18,7 @@ import { Button } from '@heroui/button'
 
 export default function IndexPage() {
   const { t } = useTranslation(['common', 'projects'])
+  const router = useRouter()
   const featuredProjects = getAllProjects().filter((project) => project.featured)
 
   return (
@@ -33,17 +36,18 @@ export default function IndexPage() {
           <p className={subtitle({ class: 'mt-6 text-lg' })}>{t('home.description')}</p>
 
           <div className="flex gap-4 mt-8">
-            <Link
+            <NextLink
+              href="/contact"
+              locale={router.locale}
               className={buttonStyles({
                 color: 'primary',
                 radius: 'full',
                 size: 'lg',
                 variant: 'shadow',
               })}
-              href="/contact"
             >
               {t('home.getInTouch')}
-            </Link>
+            </NextLink>
             <a
               // isExternal
               className={buttonStyles({
@@ -137,17 +141,18 @@ export default function IndexPage() {
         </div>
 
         <div className="flex justify-center">
-          <Link
+          <NextLink
+            href="/projects"
+            locale={router.locale}
             className={buttonStyles({
               color: 'primary',
               radius: 'full',
               size: 'lg',
               variant: 'flat',
             })}
-            href="/projects"
           >
             <p>{t('home.viewAllProjects')}</p>
-          </Link>
+          </NextLink>
         </div>
       </section>
     </DefaultLayout>

@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from '@heroui/link'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import { button as buttonStyles } from '@heroui/theme'
+import clsx from 'clsx'
+import { LeftArrowIcon, RightArrowIcon } from './icons'
 
 type ProjectNavigationProps = {
   prevProject?: {
@@ -17,85 +21,39 @@ export const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   prevProject,
   nextProject,
 }) => {
+  const router = useRouter()
+
+  const LinkButton = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <NextLink
+      href={href}
+      locale={router.locale}
+      className={
+        'w-compat text-primary flex align-middle place-items-center rounded-full sm:w-auto border-2 p-1 px-3 border-primary text-sm'
+      }
+    >
+      {children}
+    </NextLink>
+  )
+
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-default-200 pt-8">
       {prevProject?.href ? (
-        <Link
-          className={buttonStyles({
-            color: 'primary',
-            radius: 'full',
-            variant: 'ghost',
-          })}
-          href={prevProject.href}
-        >
-          <svg
-            className="mr-2"
-            fill="none"
-            height="18"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
+        <LinkButton href={prevProject.href}>
+          {<LeftArrowIcon />}
           {prevProject.label || 'Previous Project'}
-        </Link>
+        </LinkButton>
       ) : (
-        <Link
-          className={buttonStyles({
-            color: 'primary',
-            radius: 'full',
-            variant: 'ghost',
-          })}
-          href="/projects"
-        >
-          <svg
-            className="mr-2"
-            fill="none"
-            height="18"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
+        <LinkButton href="/projects">
+          {<LeftArrowIcon />}
           Back to Projects
-        </Link>
+        </LinkButton>
       )}
 
       {nextProject?.label && (
-        <Link
-          className={buttonStyles({
-            color: 'primary',
-            radius: 'full',
-            variant: 'ghost',
-          })}
-          href={nextProject.href}
-        >
+        <LinkButton href={nextProject.href}>
           {nextProject.label || 'Next Project'}
-          <svg
-            className="ml-2"
-            fill="none"
-            height="18"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
-        </Link>
+          {<RightArrowIcon />}
+        </LinkButton>
       )}
     </div>
   )

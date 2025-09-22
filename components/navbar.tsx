@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useStateContext } from '@/context/ContextProvider'
+import clsx from 'clsx'
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,7 +48,11 @@ export const Navbar = () => {
     <HeroUINavbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarBrand className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-1"
+            href="/"
+            locale={router.locale}
+          >
             <Image
               src={
                 currentTheme === 'dark' ? '/images/logo/darkLogo.png' : '/images/logo/lightLogo.png'
@@ -64,14 +69,20 @@ export const Navbar = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {translatedSiteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={router.pathname === item.href ? 'primary' : 'foreground'}
+            <NextLink
               href={item.href}
-              size="lg"
+              locale={router.locale}
+              className={clsx('w-full ', {
+                'text-primary':
+                  router.pathname === item.href ||
+                  (item.href === '/projects' && router.pathname.startsWith('/projects/')),
+                'text-foreground':
+                  router.pathname !== item.href &&
+                  !(item.href === '/projects' && router.pathname.startsWith('/projects/')),
+              })}
             >
               {item.label}
-            </Link>
+            </NextLink>
           </NavbarMenuItem>
         ))}
       </NavbarContent>
@@ -85,14 +96,20 @@ export const Navbar = () => {
       <NavbarMenu>
         {translatedSiteConfig.navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={router.pathname === item.href ? 'primary' : 'foreground'}
+            <NextLink
               href={item.href}
-              size="lg"
+              locale={router.locale}
+              className={clsx('w-full ', {
+                'text-primary':
+                  router.pathname === item.href ||
+                  (item.href === '/projects' && router.pathname.startsWith('/projects/')),
+                'text-foreground':
+                  router.pathname !== item.href &&
+                  !(item.href === '/projects' && router.pathname.startsWith('/projects/')),
+              })}
             >
               {item.label}
-            </Link>
+            </NextLink>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

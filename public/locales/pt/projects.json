@@ -5,6 +5,7 @@
     "description": "A Plataforma MyINsights, também conhecida como MyIN, visa gerar insights para a gestão operacional de equipes em campo, consolidando dados de negócio, gestão de dispositivos, tickets e contratos em um único local, simplificando assim as atividades diárias e aumentando a eficiência em todo o processo.",
     "role": "Arquitetura e Desenvolvimento",
     "status": "Em Produção",
+    "timeline": "2022-agora",
     "features": [
       {
         "title": "Autenticação Segura",
@@ -26,6 +27,7 @@
     "description": "A Integratis API é uma API RESTful desenvolvida para integrar diferentes sistemas e bancos de dados em uma interface unificada e para gerenciar e executar automações ETL desenvolvidas pela equipe. Está atualmente em sua segunda versão, com uma arquitetura mais robusta e desempenho aprimorado. Devido a limitações orçamentárias, também desenvolvi um Serviço de Armazenamento customizado para lidar com uploads e downloads de arquivos, que é usado por outros serviços na empresa.",
     "role": "Arquitetura e Desenvolvimento",
     "status": "Em Produção",
+    "timeline": "2022-agora",
     "features": [
       {
         "title": "Documentação Swagger",
@@ -47,6 +49,7 @@
     "description": "Vaske Admin é um template versátil de dashboard administrativo construído com tecnologias web modernas, projetado para ser facilmente customizável e rico em recursos para várias necessidades administrativas. É um projeto que usei principalmente para aprender e praticar React. Serviu como base para o desenvolvimento do MyINsights posteriormente.",
     "role": "Desenvolvedor Full Stack",
     "status": "Em Desenvolvimento",
+    "timeline": "2021-2022",
     "features": [
       {
         "title": "Análises Interativas",

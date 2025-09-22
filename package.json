@@ -23,7 +23,7 @@
     "@heroui/navbar": "2.2.18",
     "@heroui/progress": "2.2.16",
     "@heroui/snippet": "2.2.21",
-    "@heroui/switch": "2.2.18",
+    "@heroui/switch": "^2.2.18",
     "@heroui/system": "2.4.17",
     "@heroui/theme": "2.4.17",
     "@react-aria/visually-hidden": "3.8.23",

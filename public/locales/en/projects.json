@@ -4,6 +4,7 @@
     "subtitle": "Operational management platform",
     "description": "The MyINsights Platform, also known as MyIN, aims to generate insights for the operational management of teams in the field, consolidating business data, device management, tickets and contracts in a single location, thus simplifying daily activities and increasing efficiency throughout the process.",
     "role": "Architecture and Development",
+    "timeline": "2022-now",
     "features": [
       {
         "title": "Secure Authentication",
@@ -24,6 +25,7 @@
     "subtitle": "Backend API for system integration and ETL automations",
     "description": "Integratis API is a RESTful API developed to integrate different systems and databases into a unified interface and to manage and execute ETL automations developed by the team. It is currently on its second version, with a more robust architecture and improved performance. Due to budget limitations, I've also developed a custom Storage Service to handle file uploads and downloads, which is used by other services in the company.",
     "role": "Architecture and Development",
+    "timeline": "2022-now",
     "features": [
       {
         "title": "Swagger Documentation",
@@ -44,6 +46,7 @@
     "subtitle": "Administrative dashboard template",
     "description": "Vaske Admin is a versatile admin dashboard template built with modern web technologies, designed to be easily customizable and feature-rich for various administrative needs. Its a project that I used mainly to learn and pratice React. It served as the basis for the development of MyINsights later.",
     "role": "Full Stack Developer",
+    "timeline": "2021-2022",
     "features": [
       {
         "title": "Interactive Analytics",

@@ -40,7 +40,7 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
     ...(project.client
       ? [
           {
-            label: t(`${project.id}.details.client`),
+            label: t(`projects.client`),
             value: (
               <p className="font-medium flex items-center gap-2">
                 {project.client.logoSrc && (
@@ -61,14 +61,14 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
     {
       label: t(`projects.details.status`),
       value: project.isInProduction ? (
-        <span className="text-success">{t(`projects:${project.id}.status`)}</span>
+        <span className="text-success">{t(`projects.status.inProduction`)}</span>
       ) : (
-        <span className="text-warning">{t(`projects:${project.id}.status`)}</span>
+        <span className="text-warning">{t(`projects.status.development`)}</span>
       ),
     },
     {
       label: t(`projects.details.timeline`),
-      value: project.timeline,
+      value: t(`projects:${project.id}.timeline`),
     },
     {
       label: t(`projects.details.role`),
@@ -125,7 +125,7 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
                 </svg>
                 {project.isPrivate ? (
                   <span className="text-default-500 cursor-not-allowed">
-                    {t(`${project.id}.details.privateRepository`)}
+                    {t(`projects.repository.private`)}
                   </span>
                 ) : (
                   <a
@@ -134,7 +134,7 @@ export default function ProjectPage({ project, navigation }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    {t(`${project.id}.details.viewOnGithub`)}
+                    {t(`projects.repository.public`)}
                   </a>
                 )}
               </div>
