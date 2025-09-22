@@ -24,16 +24,26 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-16 md:py-24">
-        {/* Left content - Text and Call to Action */}
         <div className="flex flex-col max-w-2xl">
-          <h1 className={title({ size: 'lg' })}>
+          <h1 className={title({ size: 'lg', class: 'text-2xl lg:text-3xl xs:text-base' })}>
             {t('home.greeting')}{' '}
-            <span className={title({ color: 'primary', size: 'lg' })}>Vitor</span>
+            <span
+              className={title({
+                color: 'primary',
+                size: 'lg',
+                class: 'text-2xl lg:text-3xl xs:text-base ',
+              })}
+            >
+              Vitor
+            </span>
           </h1>
+          <h2 className={title({ class: 'text-2xl lg:text-3xl lg:mt-2 xs:text-base' })}>
+            {t('home.role')}
+          </h2>
 
-          <h2 className={title({ class: 'mt-4' })}>{t('home.role')}</h2>
-
-          <p className={subtitle({ class: 'mt-6 text-lg' })}>{t('home.description')}</p>
+          <p className={subtitle({ class: 'mt-4 text-sm xs:text-base sm:text-xl' })}>
+            {t('home.description')}
+          </p>
 
           <div className="flex gap-4 mt-8">
             <NextLink
@@ -46,7 +56,7 @@ export default function IndexPage() {
                 variant: 'shadow',
               })}
             >
-              {t('home.getInTouch')}
+              <span className="text-xs xs:text-sm sm:text-base">{t('home.getInTouch')}</span>
             </NextLink>
             <a
               // isExternal
@@ -60,12 +70,14 @@ export default function IndexPage() {
               rel="noreferrer"
             >
               <GithubIcon size={20} />
-              {t('home.viewMyWork')}
+              <span className="text-xs xs:text-sm sm:text-base">{t('home.viewMyWork')}</span>
             </a>
           </div>
 
           <div className="flex items-center gap-4 mt-10">
-            <span className="text-default-600">{t('home.findMeOn')}</span>
+            <span className="text-default-600 text-xs xs:text-sm sm:text-base">
+              {t('home.findMeOn')}
+            </span>
             <div className="flex gap-4">
               <Link
                 isExternal
